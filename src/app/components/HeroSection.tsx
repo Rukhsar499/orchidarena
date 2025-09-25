@@ -7,7 +7,7 @@ export default function HeroSection() {
     <section className="relative w-full h-screen overflow-hidden">
       {/* Background Video */}
       <video
-        className="absolute top-0 left-0 w-full h-full object-cover"
+        className="px-6 py-4 absolute top-0 left-0 w-full h-full object-cover"
         src="/assets/video/sujatha.mp4"
         autoPlay
         loop

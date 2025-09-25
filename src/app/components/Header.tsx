@@ -24,7 +24,7 @@ export default function Header() {
                 className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${scrolled ? "bg-black/80 shadow-md" : "bg-transparent"
                     }`}
             >
-                <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+                <div className="mx-auto flex items-center justify-between px-10 py-4">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-2">
                         <Image
@@ -36,17 +36,18 @@ export default function Header() {
                     </Link>
 
                     {/* Links */}
-                    <nav className="hidden md:flex items-center gap-8 text-white font-semibold text-sm">
-                        <Link href="/">HOME</Link>
-                        <Link href="/about">ABOUT US</Link>
-                        <Link href="/facilities">FACILITIES</Link>
-                        <Link href="/event">HOST AN EVENT</Link>
-                        <Link href="/faqs">FAQS</Link>
-                        <Link href="/contact">CONTACT US</Link>
-                    </nav>
+
 
                     {/* Right side */}
                     <div className="flex items-center gap-4">
+                        <nav className="hidden md:flex items-center gap-8 text-white font-semibold text-sm">
+                            <Link href="/">HOME</Link>
+                            <Link href="/about">ABOUT US</Link>
+                            <Link href="/facilities">FACILITIES</Link>
+                            <Link href="/event">HOST AN EVENT</Link>
+                            <Link href="/faqs">FAQS</Link>
+                            <Link href="/contact">CONTACT US</Link>
+                        </nav>
                         {/* Dots menu */}
                         <button
                             onClick={() => setOpenMenu(true)}
@@ -58,7 +59,7 @@ export default function Header() {
                         {/* Book Now button */}
                         <Link
                             href="/book"
-                            className="bg-lime-500 text-white px-5 py-2 rounded-md font-semibold hover:bg-lime-600 transition"
+                            className="bg-lime-500 text-white px-5 py-2 font-semibold hover:bg-lime-600 transition"
                         >
                             BOOK NOW
                         </Link>
