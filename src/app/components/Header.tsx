@@ -40,7 +40,7 @@ export default function Header() {
 
                     {/* Right side */}
                     <div className="flex items-center gap-4">
-                        <nav className="hidden md:flex items-center gap-8 text-white font-semibold text-sm">
+                        <nav className="hidden md:flex items-center gap-8 text-white text-[17px] font-semibold">
                             <Link href="/">HOME</Link>
                             <Link href="/about">ABOUT US</Link>
                             <Link href="/facilities">FACILITIES</Link>

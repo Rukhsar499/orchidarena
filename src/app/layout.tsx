@@ -1,21 +1,22 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Barlow_Condensed } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 import "./globals.css";
+import { Barlow } from "next/font/google";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const barlowCondensed = Barlow_Condensed({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"], // जो weights चाहिए वो डालो
 });
 
 export const metadata: Metadata = {
  title: "Arena",
   description: "Sports Arena Website",
 };
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"], // जो चाहिए वो चुन लो
+});
 
 export default function RootLayout({
   children,
@@ -23,12 +24,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
-    </html>
+   <html lang="en" className={`${barlowCondensed.className} ${dmSans.className}`}>
+  <body>{children}</body>
+</html>
   );
 }
