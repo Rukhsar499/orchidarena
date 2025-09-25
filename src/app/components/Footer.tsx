@@ -50,7 +50,7 @@ const Footer: React.FC = () => {
             <div className="max-w-7xl container mx-auto px-4">
                 <div className="grid md:grid-cols-4 gap-8 text-left">
                     <div className="flex flex-col">
-                        <h2 className="text-[#fff] mb-6 text-[21px] font-semibold">KOLKATA'S PREMIER SPORTS ARENA</h2>
+                        <h2 className="text-[#fff] mb-6 text-[21px] font-semibold">KOLKATA&apos;S PREMIER SPORTS ARENA</h2>
                         <p className="text-white/70 text-[17px]">
                             <b>Orchid Arena</b> is your premier multi-sports destination offering world-class facilities for football, pickleball, and cricket, well-maintained environment. Orchid Arena is the perfect venue for sports lovers to train, play, and compete every day.
                         </p>
