@@ -97,7 +97,7 @@ const Footer: React.FC = () => {
                                     key={social.label}
                                     href={social.href}
                                     aria-label={social.label}
-                                    className="hover:text-[#fff] transition-colors text-xl"
+                                    className="hover:text-[#fff] transition-colors text-xl mb-4"
                                 >
                                     {social.icon}
                                 </a>
