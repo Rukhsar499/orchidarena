@@ -62,8 +62,8 @@ const Footer: React.FC = () => {
                         <p className="text-white/70 text-[17px]">
                             11A, 1J, E Topsia Rd, Mirania Gardens, East Topsia, Topsia, Kolkata, West Bengal 700105
                         </p>
-                        <div className="pt-4">
-                         <ul className="space-y-2 text-white/70 text-[16px] mb-4">
+                        <div className="pt-8">
+                         <ul className="space-y-2 text-white/70 text-[16px] font-['DM_Sans'] mb-4">
                             {contactInfo.map((item, index) => (
                                 <li key={index} className="flex items-center gap-2">
                                     <span className="text-[#fff] text-lg">{item.icon}</span>
