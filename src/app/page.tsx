@@ -4,7 +4,7 @@ import HeroSection from "./components/HeroSection"
 import Facilities from "./components/Facilities"
 import OrchidArena from "./components/OrchidArena"
 import Footer from "./components/Footer"
-
+import ContactForm from "./components/ContactForm"
 
 
 export default function Home() {
@@ -14,6 +14,7 @@ export default function Home() {
  <HeroSection/>
  <Facilities/>
  <OrchidArena/>
+ <ContactForm/>
  <Footer/>
  </>
   );

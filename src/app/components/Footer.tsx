@@ -91,7 +91,7 @@ const Footer: React.FC = () => {
                     {/* Contact & Social */}
                     <div className="flex flex-col items-start justify-start text-left">
                         <h2 className="text-[#fff] mb-6 text-[21px] font-semibold">Get in Touch</h2>
-                          <div className="   gap-4 text-white">
+                          <div className="gap-4 text-white">
                             {socialLinks.map((social) => (
                                 <a
                                     key={social.label}
