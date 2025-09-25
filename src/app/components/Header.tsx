@@ -26,7 +26,7 @@ export default function Header() {
             >
                 <div className="mx-auto flex items-center justify-between px-10 py-4">
                     {/* Logo */}
-                    <Link href="/" className="flex items-center gap-2">
+                    <Link href="/" className="flex items-center gap-2 mt-4">
                         <Image
                             src="/assets/img/logo.webp"
                             alt="Right arrow"
