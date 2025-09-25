@@ -6,7 +6,7 @@ import { Barlow } from "next/font/google";
 
 const barlowCondensed = Barlow_Condensed({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"], // जो weights चाहिए वो डालो
+  weight: ["300", "400", "500", "600", "700"], 
 });
 
 export const metadata: Metadata = {
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 const dmSans = DM_Sans({
   subsets: ["latin"],
-  weight: ["400", "500", "700"], // जो चाहिए वो चुन लो
+  weight: ["400", "500", "700"], 
 });
 
 export default function RootLayout({

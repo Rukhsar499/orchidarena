@@ -24,23 +24,24 @@ const quickLinks: LinkItem[] = [
 
 const legalLinks: LinkItem[] = [
     { name: "Home", href: "/shipping-policy" },
-    { name: "Refund Policy", href: "/refund-policy" },
-    { name: "Terms & Conditions", href: "/terms-and-conditions" },
-    { name: "Cancellation Policy", href: "/cancellation-policy" },
-    { name: "Privacy Policy", href: "/privacy-policy" },
+    { name: "About Us", href: "/refund-policy" },
+    { name: "Host an Event", href: "/terms-and-conditions" },
+    { name: "FAQs", href: "/cancellation-policy" },
+    { name: "Contact Us", href: "/privacy-policy" },
+    { name: "Privacy policy", href: "/privacy-policy" },
+    { name: "Turf Booking Policy", href: "/privacy-policy" },
 ];
 
 const socialLinks: SocialItem[] = [
     { icon: <FaFacebookF />, href: "#", label: "Facebook" },
-    { icon: <FaWhatsapp />, href: "#", label: "Whatsapp" },
     { icon: <FaInstagram />, href: "#", label: "Instagram" },
-    { icon: <FaTwitter />, href: "#", label: "Twitter" },
+   
 ];
 
 const contactInfo = [
-    { icon: <MdPhone />, text: "+91 7003810162" },
-    { icon: <MdEmail />, text: "info@beyuvana.com" },
-    { icon: <MdLocationOn />, text: "Kolkata, India" },
+    { icon: <MdPhone />, text: "+91 98315 57613" },
+    { icon: <MdEmail />, text: "calboat@gmail.com" },
+   
 ];
 
 const Footer: React.FC = () => {
@@ -61,15 +62,25 @@ const Footer: React.FC = () => {
                         <p className="text-white/70 text-[17px]">
                             11A, 1J, E Topsia Rd, Mirania Gardens, East Topsia, Topsia, Kolkata, West Bengal 700105
                         </p>
+                        <div className="pt-4">
+                         <ul className="space-y-2 text-white/70 text-[16px] mb-4">
+                            {contactInfo.map((item, index) => (
+                                <li key={index} className="flex items-center gap-2">
+                                    <span className="text-[#fff] text-lg">{item.icon}</span>
+                                    {item.text}
+                                </li>
+                            ))}
+                        </ul>
+                        </div>
                     </div>
 
                     {/* Legal Links */}
                     <div className="flex flex-col items-start justify-start text-left">
                         <h2 className="text-[#fff] mb-6 text-[21px] font-semibold">Links</h2>
-                        <ul className="space-y-2 text-white/70 font-[DM Sans] text-[16px]">
+                        <ul className="space-y-2 text-white/70 font-['DM_Sans'] text-[16px]">
                             {legalLinks.map((link) => (
                                 <li key={link.name} className="flex items-center gap-2">
-                                    <a href={link.href} className="hover:text-[#DFC362] transition-colors">
+                                    <a href={link.href} className="hover:border-b-white hover:translate-x-1.5 hover:border-b-1 transform transition-all mb-3">
                                         {link.name}
                                     </a>
                                 </li>
@@ -78,24 +89,15 @@ const Footer: React.FC = () => {
                     </div>
 
                     {/* Contact & Social */}
-                    <div className="pt-10 flex flex-col items-start justify-start text-left">
+                    <div className="flex flex-col items-start justify-start text-left">
                         <h2 className="text-[#fff] mb-6 text-[21px] font-semibold">Get in Touch</h2>
-                        <ul className="space-y-2 text-white/70 text-[16px] mb-4">
-                            {contactInfo.map((item, index) => (
-                                <li key={index} className="flex items-center gap-2">
-                                    <span className="text-[#DFC362] text-lg">{item.icon}</span>
-                                    {item.text}
-                                </li>
-                            ))}
-                        </ul>
-                        <h2 className="text-[#DFC362] mb-2 font-[Grafiels] text-[1.2rem]">Social Links</h2>
-                        <div className="flex gap-4 text-white">
+                          <div className="   gap-4 text-white">
                             {socialLinks.map((social) => (
                                 <a
                                     key={social.label}
                                     href={social.href}
                                     aria-label={social.label}
-                                    className="hover:text-[#DFC362] transition-colors text-xl"
+                                    className="hover:text-[#fff] transition-colors text-xl"
                                 >
                                     {social.icon}
                                 </a>
