@@ -6,6 +6,7 @@ import OrchidArena from "./components/OrchidArena"
 import Footer from "./components/Footer"
 import ContactForm from "./components/ContactForm"
 import SportsSection from "./components/SportsSection"
+import CounterSection from "./components/CounterSection"
 
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <HeroSection />
       <Facilities />
       <OrchidArena />
+      <CounterSection/>
       <SportsSection/>
       <section className="future">
         <div className="container mx-auto max-w-7xl px-4">
