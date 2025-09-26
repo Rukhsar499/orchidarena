@@ -15,25 +15,21 @@ const OrchidArena: React.FC = () => {
                     height={300}
                 />
                 <div className="absolute -bottom-10 -right-2 bg-[#1f1f0f] md:py-8 md:p-10 max-w-[340px] h-[210px]">
-                    <h2 className="text-white mb-0 font-semibold text-[34px] ">THE BEST TURFS IN <br /> THE HEART OF THE CITY</h2>
+                    <h2 className="text-white mb-0 font-semibold text-[34px] ">PSM Turf –
+                        <br />Let the  games  begin!</h2>
                 </div>
             </div>
 
             {/* Right Content */}
             <div className="w-full md:w-1/2 flex flex-col gap-6">
                 <h2 className="text-3xl md:text-[55px] font-semibold">
-                    WELCOME TO ORCHID <br /> ARENA
+                    WELCOME TO PSM Turf
                 </h2>
                 <p className="text-[18px] text-[#656565]">
-                    Located in the heart of the city, our state-of-the-art multi-sports arena is your ultimate destination for recreation, competition, and celebration. Whether you’re here to play, train, or unwind, we’ve got something for everyone.
+                    Our cutting-edge multisport stadium is situated in the New Town, Rajarhat neighbourhood. It is the perfect place for celebration, competition, and leisure. We have something for everyone, if you&apos;re just here to play football. Enter our well-kept football field or experience the excitement of a game on our floodlit field, which is ideal for both day and night games. Our location is perfect for holding leagues and tournaments of all kinds because it has excellent facilities and lots of room. We cater to serious athletes to recreational players of all ability levels. Our arena provides a lively, dynamic setting that unites people via the lovely game of football. Go for it. The lights are on. Now let&apos;s get started.
+
                 </p>
-                <p className="text-[18px] text-[#656565]">
-                    Step onto our professionally maintained pickleball courts, or enjoy the thrill of the game on our floodlit football and cricket turf, perfect for both day and night matches. With top-quality facilities and ample space, our venue is ideal for hosting tournaments, leagues, and private parties of all kinds.
-                </p>
-                <p className="text-[18px] text-[#656565]">
-                    From serious sportspersons to casual players and event organizers, our arena offers a vibrant, dynamic environment that brings people together through sport and celebration.
-                </p>
-                <p className="text-[18px] text-[#656565]">Game on. Lights on. Let the action begin.</p>
+
 
                 <button
                     type="submit"
