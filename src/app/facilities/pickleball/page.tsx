@@ -142,7 +142,7 @@ const Page = () => {
             <section className="md:py-20 py-10">
                 <div className="container mx-auto md:px-10 px-4">
                     <div className="flex flex-wrap justify-between gap-y-6">
-                        <div className="w-full md:w-[48%] flex justify-center items-center">
+                        <div className="w-full md:w-[48%] flex justify-center">
                             <Image
                                 src="/assets/img/white-tenis.webp"
                                 alt="Event"
