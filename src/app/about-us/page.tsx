@@ -3,6 +3,7 @@ import OrchidArena from "../components/OrchidArena"
 import CounterSection from "../components/CounterSection"
 import TestimonialSlider from "../components/TestimonialSlider"
 import FeatureSection from "../components/FeatureSection"
+import VideoSection from "../components/VideoSection"
 
 
 export default function Home() {
@@ -10,8 +11,9 @@ export default function Home() {
     <>
      <OrchidArena /> 
       <CounterSection/>
-      <TestimonialSlider/>
       <FeatureSection/>
+      <TestimonialSlider/>
+      <VideoSection/>
     </>
   );
 }

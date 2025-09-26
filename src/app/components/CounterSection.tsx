@@ -34,7 +34,7 @@ const CounterSection = () => {
   }, []);
 
   return (
-    <section className="relative py-20 bg-gray-100">
+    <section className="relative py-20">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="flex flex-wrap justify-center lg:justify-between gap-8">
           {counters.map((item, index) => (

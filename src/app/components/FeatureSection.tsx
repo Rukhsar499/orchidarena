@@ -34,7 +34,8 @@ export default function FeatureSection() {
     const [openId, setOpenId] = useState<number>(1); // default open first
 
     return (
-        <section className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+        <section className="  bg-[#F3F8F9]">
+            <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
             {/* Left side */}
             <div>
                 {/* Accordion */}
@@ -71,7 +72,7 @@ export default function FeatureSection() {
                                 </span>
                             </button>
                             {openId === item.id && (
-                                <div className="px-5 py-4 text-gray-600 text-sm bg-white">
+                                <div className="px-5 py-4 text-gray-600 text-sm">
                                     {item.content}
                                 </div>
                             )}
@@ -108,10 +109,11 @@ export default function FeatureSection() {
                 <Image
                     src="/assets/img/badminton.jpg"
                     alt="Football Training"
-                    width={500}
+                    width={550}
                     height={400}
                     className="object-cover shadow-md"
                 />
+            </div>
             </div>
         </section>
     );
