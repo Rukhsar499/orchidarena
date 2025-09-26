@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Barlow_Condensed } from "next/font/google";
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
-import { Barlow } from "next/font/google";
+
 import Header from "./components/Header"
 import Footer from "./components/Footer"
 

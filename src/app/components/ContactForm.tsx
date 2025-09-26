@@ -8,7 +8,9 @@ interface FormData {
     lastName: string;
     email: string;
     phone: string;
-    eventDetails: string;
+    date: string;
+    time: string;
+    location: string;
 }
 
 export default function ContactForm() {
@@ -17,11 +19,13 @@ export default function ContactForm() {
         lastName: "",
         email: "",
         phone: "",
-        eventDetails: "",
+        date: "",
+        time: "",
+        location: "",
     });
 
     const handleChange = (
-        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
     ) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
@@ -29,7 +33,7 @@ export default function ContactForm() {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         console.log("Form Data:", formData);
-        // 🔗 Here you can call your API with formData
+        // 🔗 Call API here with formData
     };
 
     return (
@@ -37,7 +41,7 @@ export default function ContactForm() {
             {/* Left Side Image */}
             <div className="w-full lg:w-1/2 h-64 lg:h-auto">
                 <Image
-                    src="/assets/img/bat.webp" // 👉 replace with your image
+                    src="/assets/img/bat.webp"
                     alt="Event"
                     className="w-full h-full object-cover md:pb-0 pb-10"
                     width={400}
@@ -55,31 +59,31 @@ export default function ContactForm() {
                         <p className="text-sm font-medium tracking-wide text-[#000]">
                             CONTACT US
                         </p>
-                        <h2 className="md:text-[55px] text-[30px] leading-tight font-semibold mt-2 leading-[55px]">
-                            HOSTING AN EVENT <br /> GET IN TOUCH!
+                        <h2 className="md:text-[55px] text-[30px] leading-tight font-semibold mt-2 md:leading-[55px]">
+                            PSM Turf – Let the games begin!
+                            <br /> GET IN TOUCH!
                         </h2>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <input
-                            type="text"
-                            name="firstName"
-                            placeholder="First Name"
-                            value={formData.firstName}
-                            onChange={handleChange}
-                            className="border-b border-gray-400 p-3 w-full transition-colors duration-300 focus:border-b- focus:border-black focus:outline-none"
-                            required
-                        />
-                        <input
-                            type="text"
-                            name="lastName"
-                            placeholder="Last Name"
-                            value={formData.lastName}
-                            onChange={handleChange}
-                            className="border-b border-gray-400 p-3 w-full transition-colors duration-300 focus:border-b- focus:border-black focus:outline-none"
-                            required
-                        />
-                    </div>
+                    <input
+                        type="text"
+                        name="firstName"
+                        placeholder="First Name"
+                        value={formData.firstName}
+                        onChange={handleChange}
+                        className="border-b border-gray-400 p-3 w-full transition-colors duration-300 focus:border-black focus:outline-none"
+                        required
+                    />
+
+                    <input
+                        type="text"
+                        name="lastName"
+                        placeholder="Last Name"
+                        value={formData.lastName}
+                        onChange={handleChange}
+                        className="border-b border-gray-400 p-3 w-full transition-colors duration-300 focus:border-black focus:outline-none"
+                        required
+                    />
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <input
@@ -88,7 +92,7 @@ export default function ContactForm() {
                             placeholder="Email"
                             value={formData.email}
                             onChange={handleChange}
-                            className="border-b border-gray-400 p-3 w-full transition-colors duration-300 focus:border-b- focus:border-black focus:outline-none"
+                            className="border-b border-gray-400 p-3 w-full transition-colors duration-300 focus:border-black focus:outline-none"
                             required
                         />
                         <input
@@ -97,26 +101,50 @@ export default function ContactForm() {
                             placeholder="Phone"
                             value={formData.phone}
                             onChange={handleChange}
-                            className="border-b border-gray-400 p-3 w-full transition-colors duration-300 focus:border-b- focus:border-black focus:outline-none"
+                            className="border-b border-gray-400 p-3 w-full transition-colors duration-300 focus:border-black focus:outline-none"
+                            required
+                        />
+                        <input
+                            type="date"
+                            name="date"
+                            value={formData.date}
+                            onChange={handleChange}
+                            className="border-b border-gray-400 p-3 w-full transition-colors duration-300 focus:border-black focus:outline-none"
+                            required
+                        />
+                        <input
+                            type="time"
+                            name="time"
+                            value={formData.time}
+                            onChange={handleChange}
+                            className="border-b border-gray-400 p-3 w-full transition-colors duration-300 focus:border-black focus:outline-none"
                             required
                         />
                     </div>
 
-                    <input
-                        name="eventDetails"
-                        placeholder="Event Details If Any"
-                        value={formData.eventDetails}
+                    {/* Dropdown for Location */}
+                    <select
+                        name="location"
+                        value={formData.location}
                         onChange={handleChange}
-                        className="border-b border-gray-400 p-3 w-full transition-colors duration-300 focus:border-b- focus:border-black focus:outline-none"
-                            required
-                    />
+                        className="border-b border-gray-400 p-3 w-full bg-transparent transition-colors duration-300 focus:border-black focus:outline-none"
+                        required
+                    >
+                        <option value="" disabled>
+                            Select Location
+                        </option>
+                        <option value="indoor">Indoor Ground</option>
+                        <option value="outdoor">Outdoor Ground</option>
+                        <option value="banquet">Banquet Hall</option>
+                        <option value="other">Other</option>
+                    </select>
 
                     <button
                         type="submit"
                         className="flex items-center mt-4 justify-center gap-2 w-full sm:w-auto px-6 py-3 bg-[#91be4d] text-white font-semibold hover:bg-green-700 transition"
                     >
                         <Image
-                            src="/assets/img/send.png" // 👉 replace with your image
+                            src="/assets/img/send.png"
                             alt="Send"
                             width={20}
                             height={20}

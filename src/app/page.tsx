@@ -1,9 +1,9 @@
 
-import Header from "./components/Header"
+
 import HeroSection from "./components/HeroSection"
 import Facilities from "./components/Facilities"
 import OrchidArena from "./components/OrchidArena"
-import Footer from "./components/Footer"
+
 import ContactForm from "./components/ContactForm"
 import SportsSection from "./components/SportsSection"
 import CounterSection from "./components/CounterSection"
