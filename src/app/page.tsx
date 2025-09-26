@@ -1,12 +1,12 @@
 
 
 import HeroSection from "./components/HeroSection"
-import Facilities from "./components/Facilities"
+// import Facilities from "./components/Facilities"
 import OrchidArena from "./components/OrchidArena"
-
+import TurfGallery from "./components/TurfGallery"
 import ContactForm from "./components/ContactForm"
-import SportsSection from "./components/SportsSection"
-import CounterSection from "./components/CounterSection"
+// import SportsSection from "./components/SportsSection"
+// import CounterSection from "./components/CounterSection"
 
 
 
@@ -15,11 +15,12 @@ export default function Home() {
   return (
  <>
  <HeroSection />
-      <Facilities />
+      {/* <Facilities /> */}
       <OrchidArena />
-      <CounterSection/>
-      <SportsSection/>
-      <section className="future">
+      <TurfGallery/>
+      {/* <CounterSection/>
+      <SportsSection/> */}
+      {/* <section className="future">
         <div className="container mx-auto max-w-7xl px-4">
           <div className="flex">
             <div className="w-full lg:w-1/2 h-64">
@@ -32,7 +33,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
       <ContactForm />
  </>
   );
