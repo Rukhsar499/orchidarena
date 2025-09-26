@@ -7,18 +7,19 @@ import Footer from "./components/Footer"
 import ContactForm from "./components/ContactForm"
 import SportsSection from "./components/SportsSection"
 import CounterSection from "./components/CounterSection"
+import Image from "next/image"
 
 
 
 
 export default function Home() {
   return (
- <>
- <HeroSection />
+    <>
+      <HeroSection />
       <Facilities />
       <OrchidArena />
-      <CounterSection/>
-      <SportsSection/>
+      <CounterSection />
+      <SportsSection />
       <section className="future">
         <div className="container mx-auto max-w-7xl px-4">
           <div className="flex">
@@ -33,7 +34,26 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <ContactForm />
- </>
+      <section>
+        <div className="container mx-auto px-4">
+          <div className="flex">
+            <div className="w-full lg:w-1/2">
+              <div className="w-full lg:w-[48%] h-64 lg:h-auto">
+                <Image
+                  src="/assets/img/bat.webp" 
+                  alt="Event"
+                  className="w-full h-full object-cover"
+                  width={400}
+                  height={400}
+                />
+              </div>
+            </div>
+            <div className="w-full lg:w-[48%]">
+              <ContactForm />
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
