@@ -1,9 +1,11 @@
 @import "tailwindcss";
 
 body {
- font-family: "DM Sans", sans-serif;
+ font-family: "Barlow Condensed", sans-serif;
 }
-
+p{
+  font-family: "DM Sans", sans-serif;  
+}
 h2, .cric{
 font-family: "Barlow Condensed", sans-serif;
 text-transform: uppercase;
