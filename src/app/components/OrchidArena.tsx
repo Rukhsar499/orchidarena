@@ -1,6 +1,7 @@
 // components/OrchidArena.tsx
 import Image from "next/image";
 import React from "react";
+import Link from "next/link";
 
 
 const OrchidArena: React.FC = () => {
@@ -31,12 +32,12 @@ const OrchidArena: React.FC = () => {
                 </p>
 
 
-                <button
+                 <Link href="/booking"><button
                     type="submit"
                     className="font-['DM_Sans'] flex items-center mt-4 justify-center gap-2 px-10 py-3 bg-[#2eac6d] text-white font-semibold  hover:bg-green-700 transition w-fit"
                 >
                     <span>Book Now</span>
-                </button>
+                </button></Link>
             </div>
         </section>
     );
