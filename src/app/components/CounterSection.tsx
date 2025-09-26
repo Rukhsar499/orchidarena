@@ -43,7 +43,7 @@ const CounterSection = () => {
               className="relative w-40 h-40 flex flex-col items-center justify-center"
             >
               {/* Background faded number */}
-              <span className="absolute text-gray-300 text-6xl md:text-7xl font-bold select-none pointer-events-none">
+              <span className="absolute text-gray-300 text-6xl md:text-[120px] font-bold select-none pointer-events-none">
                 {item.number.toLocaleString()}
               </span>
 
