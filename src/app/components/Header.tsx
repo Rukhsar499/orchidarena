@@ -58,7 +58,7 @@ export default function Header() {
 
                         {/* Book Now button */}
                         <Link
-                            href="/book"
+                            href="/booking"
                             className="bg-lime-500 text-white px-5 py-2 font-semibold hover:bg-lime-600 transition"
                         >
                             BOOK NOW
