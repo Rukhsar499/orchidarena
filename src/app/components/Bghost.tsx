@@ -8,7 +8,7 @@ export default function VideoSection() {
 
   return (
     <section
-      className="relative w-full h-screen overflow-hidden flex items-center justify-center bg-cover bg-center"
+      className="relative w-full h-screen overflow-hidden flex items-center justify-center"
       style={{ backgroundImage: "url('/assets/img/b-host.jpg')" }}
     >
       {/* Overlay dark effect */}
