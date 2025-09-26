@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
-import { FaFacebookF, FaWhatsapp, FaInstagram, FaTwitter } from "react-icons/fa";
-import { MdPhone, MdEmail, MdLocationOn } from "react-icons/md";
+
+import { FaFacebookF,  FaInstagram } from "react-icons/fa";
+import { MdPhone, MdEmail } from "react-icons/md";
 
 type LinkItem = {
     name: string;
@@ -16,11 +16,7 @@ type SocialItem = {
     label: string;
 };
 
-const quickLinks: LinkItem[] = [
-    { name: "Contact Us", href: "/contact" },
-    { name: "Shipping & Returns", href: "/" },
-    { name: "Product", href: "/product" },
-];
+
 
 const legalLinks: LinkItem[] = [
     { name: "Home", href: "/shipping-policy" },
