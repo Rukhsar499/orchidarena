@@ -48,13 +48,13 @@ const facilities = [
 
 export default function Facilities() {
     return (
-        <section className="bg-[#F3F8F9] md:py-30 py-8 mx-auto">
-            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 px-2">
+        <section className="bg-[#F3F8F9] md:py-30 py-25  mx-auto">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 px-6">
                 {facilities.map((item, i) => (
                     <motion.div
                         key={i}
                         whileHover={{ scale: 1.05 }}
-                        className="group flex flex-col text-left cursor-pointer"
+                        className="group flex flex-col md:text-left cursor-pointer  md:border-0 border-b-1 border-[#0000005b] md:pb-0 pb-4"
                     >
                         <div className="text-green-600">{item.icon}</div>
                         <h3 className="mt-4 text-[24px] font-semibold">{item.title}</h3>

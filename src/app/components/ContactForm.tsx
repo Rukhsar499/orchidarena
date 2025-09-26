@@ -39,7 +39,7 @@ export default function ContactForm() {
                 <Image
                     src="/assets/img/bat.webp" // 👉 replace with your image
                     alt="Event"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover md:pb-0 pb-10"
                     width={400}
                     height={400}
                 />

@@ -24,13 +24,13 @@ export default function Header() {
                 className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${scrolled ? "bg-black/80 shadow-md" : "bg-transparent"
                     }`}
             >
-                <div className="mx-auto flex items-center justify-between px-10 py-4">
+                <div className="mx-auto flex items-center justify-between px-10 md:py-2">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-2 mt-4">
                         <Image
                             src="/assets/img/logo.webp"
                             alt="Right arrow"
-                            width={90}
+                            width={70}
                             height={100}
                         />
                     </Link>
