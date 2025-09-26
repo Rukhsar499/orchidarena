@@ -44,7 +44,7 @@ export default function Header() {
                             <Link href="/">HOME</Link>
                             <Link href="/about-us">ABOUT US</Link>
                             <Link href="/facilities">FACILITIES</Link>
-                            <Link href="/event">HOST AN EVENT</Link>
+                            <Link href="/host-an-event">HOST AN EVENT</Link>
                             <Link href="/faqs">FAQS</Link>
                             <Link href="/contact">CONTACT US</Link>
                         </nav>

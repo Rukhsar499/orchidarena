@@ -53,7 +53,7 @@ export default function FeatureSection() {
                                 onClick={() =>
                                     setOpenId(openId === item.id ? -1 : item.id)
                                 }
-                                className="flex justify-between items-center w-full px-5 py-2 border-b-1  hover:bg-gray-100 transition"
+                                className="flex justify-between items-center w-full px-5 py-2 border-b-1  transition"
                             >
                                 <div className="flex items-center gap-3">
                                     {/* Football Icon (replace src with your football image path) */}
