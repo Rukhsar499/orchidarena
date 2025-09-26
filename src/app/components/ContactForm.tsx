@@ -53,7 +53,7 @@ export default function ContactForm() {
             <div className="w-full lg:w-1/2 flex items-center justify-start md:px-35 bg-white">
                 <form
                     onSubmit={handleSubmit}
-                    className="w-full max-w-lg space-y-6 p-6"
+                    className="w-full  space-y-6 p-6"
                 >
                     <div>
                         <p className="text-sm font-medium tracking-wide text-[#000]">
@@ -61,7 +61,7 @@ export default function ContactForm() {
                         </p>
                         <h2 className="md:text-[55px] text-[30px] leading-tight font-semibold mt-2 md:leading-[55px]">
                             PSM Turf – Let the games begin!
-                            <br /> GET IN TOUCH!
+                           
                         </h2>
                     </div>
 
