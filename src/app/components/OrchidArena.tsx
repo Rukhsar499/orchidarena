@@ -14,8 +14,8 @@ const OrchidArena: React.FC = () => {
                     width={500} // Set appropriate width and height
                     height={300}
                 />
-                <div className="absolute -bottom-10 -right-2 bg-[#1f1f0f] md:py-8 md:p-10 max-w-[340px] h-[210px]">
-                    <h2 className="text-white mb-0 font-semibold text-[34px] ">PSM Turf –
+                <div className="absolute -bottom-10 -right-2 bg-[#1f1f0f] md:py-8 md:p-10 px-6 py-4 max-w-[340px] md:h-[210px] h-[130px]">
+                    <h2 className="text-white mb-0 font-semibold md:text-[34px] text-[22px]">PSM Turf –
                         <br />Let the  games  begin!</h2>
                 </div>
             </div>
