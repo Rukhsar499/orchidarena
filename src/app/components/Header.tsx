@@ -42,7 +42,7 @@ export default function Header() {
                     <div className="flex items-center gap-4">
                         <nav className="hidden md:flex items-center gap-8 text-white text-[17px] font-semibold">
                             <Link href="/">HOME</Link>
-                            <Link href="/about">ABOUT US</Link>
+                            <Link href="/about-us">ABOUT US</Link>
                             <Link href="/facilities">FACILITIES</Link>
                             <Link href="/event">HOST AN EVENT</Link>
                             <Link href="/faqs">FAQS</Link>

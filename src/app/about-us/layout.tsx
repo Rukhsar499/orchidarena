@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import "./globals.css";
+
 
 
 
 
 export const metadata: Metadata = {
- title: "Arena",
-  description: "Sports Arena Website",
+ title: "About Us - Narayana",
+  description: "Sports Narayana Website",
 };
 
 

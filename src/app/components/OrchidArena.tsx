@@ -37,7 +37,7 @@ const OrchidArena: React.FC = () => {
 
                 <button
                     type="submit"
-                    className="flex items-center mt-4 justify-center gap-2 px-6 py-3 bg-[#91be4d] text-white font-semibold rounded-md hover:bg-green-700 transition"
+                    className="font-['DM_Sans'] flex items-center mt-4 justify-center gap-2 px-10 py-3 bg-[#2eac6d] text-white font-semibold  hover:bg-green-700 transition w-fit"
                 >
                     <span>Book Now</span>
                 </button>
