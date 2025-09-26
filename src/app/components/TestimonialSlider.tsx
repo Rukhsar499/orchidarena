@@ -41,7 +41,7 @@ const testimonials: Testimonial[] = [
 
 export default function TestimonialSlider() {
   return (
-    <section className="max-w-6xl mx-auto py-12 px-4">
+    <section className="max-w-7xl mx-auto py-20 px-4">
       <h2 className="text-3xl md:text-[55px] font-semibold text-center">
         What Our Players Say
       </h2>
@@ -52,6 +52,7 @@ export default function TestimonialSlider() {
           perPage: 2,
           gap: "2rem",
           autoplay: true,
+          arrows:true,
           pauseOnHover: true,
           resetProgress: false,
           breakpoints: {
@@ -64,7 +65,7 @@ export default function TestimonialSlider() {
       >
         {testimonials.map((t) => (
           <SplideSlide key={t.id}>
-            <div className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center h-full mt-6">
+            <div className="bg-white rounded-2xl shadow-sm p-6 flex flex-col items-center text-center h-full mt-6">
               <Image
                 src={t.photo}
                 alt={t.name}
