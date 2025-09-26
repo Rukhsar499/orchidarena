@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Barlow_Condensed } from "next/font/google";
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
-import { Barlow } from "next/font/google";
+
 
 const barlowCondensed = Barlow_Condensed({
   subsets: ["latin"],
