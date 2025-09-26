@@ -49,13 +49,13 @@ export default function ContactForm() {
             <div className="w-full lg:w-1/2 flex items-center justify-start md:px-35 bg-white">
                 <form
                     onSubmit={handleSubmit}
-                    className="w-full max-w-lg space-y-6"
+                    className="w-full max-w-lg space-y-6 p-6"
                 >
                     <div>
                         <p className="text-sm font-medium tracking-wide text-[#000]">
                             CONTACT US
                         </p>
-                        <h2 className="text-[55px] font-semibold mt-2 leading-[55px]">
+                        <h2 className="md:text-[55px] text-[30px] leading-tight font-semibold mt-2 leading-[55px]">
                             HOSTING AN EVENT <br /> GET IN TOUCH!
                         </h2>
                     </div>
