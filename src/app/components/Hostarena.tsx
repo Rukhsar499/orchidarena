@@ -22,9 +22,9 @@ const OrchidArena: React.FC = () => {
                         alt="A soccer arena"
                         width={30}
                         height={20}
-                        className="mr-3 h-7"
+                        className="mr-2 h-7"
                     />
-                    <p className="text-[18px] text-[#656565]">
+                    <p className="text-[16px] text-[#656565]">
                         Gaming & eSports Tournaments
                     </p>
                 </div>
@@ -34,9 +34,9 @@ const OrchidArena: React.FC = () => {
                         alt="A soccer arena"
                         width={30}
                         height={20}
-                        className="mr-3 h-7"
+                        className="mr-2 h-7"
                     />
-                    <p className="text-[18px] text-[#656565]">
+                    <p className="text-[16px] text-[#656565]">
                         Gaming & eSports Tournaments
                     </p>
                 </div>
@@ -46,9 +46,9 @@ const OrchidArena: React.FC = () => {
                         alt="A soccer arena"
                         width={30}
                         height={20}
-                        className="mr-3 h-7"
+                        className="mr-2 h-7"
                     />
-                    <p className="text-[18px] text-[#656565]">
+                    <p className="text-[16px] text-[#656565]">
                         Gaming & eSports Tournaments
                     </p>
                 </div>
