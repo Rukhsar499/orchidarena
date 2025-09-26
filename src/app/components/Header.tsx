@@ -51,7 +51,7 @@ export default function Header() {
                         {/* Dots menu */}
                         <button
                             onClick={() => setOpenMenu(true)}
-                            className="p-2 rounded-md text-white hover:bg-white/10"
+                            className="p-2 rounded-md text-white hover:bg-white/10 block md:hidden"
                         >
                             <Menu size={22} />
                         </button>
@@ -69,7 +69,7 @@ export default function Header() {
 
             {/* Side Drawer */}
             <div
-                className={`fixed top-0 right-0 h-full w-64 bg-black text-white transform transition-transform duration-300 z-50 ${openMenu ? "translate-x-0" : "translate-x-full"
+                className={`block md:hidden fixed top-0 right-0 h-full w-64 bg-black text-white transform transition-transform duration-300 z-50 ${openMenu ? "translate-x-0" : "translate-x-full"
                     }`}
             >
                 <div className="p-6 flex flex-col gap-6">
@@ -80,7 +80,7 @@ export default function Header() {
                         ✕
                     </button>
                     <Link href="/" onClick={() => setOpenMenu(false)}>HOME</Link>
-                    <Link href="/about" onClick={() => setOpenMenu(false)}>ABOUT US</Link>
+                    <Link href="/about-us" onClick={() => setOpenMenu(false)}>ABOUT US</Link>
                     <Link href="/facilities" onClick={() => setOpenMenu(false)}>FACILITIES</Link>
                     <Link href="/event" onClick={() => setOpenMenu(false)}>HOST AN EVENT</Link>
                     <Link href="/faqs" onClick={() => setOpenMenu(false)}>FAQS</Link>
