@@ -12,7 +12,7 @@ const barlowCondensed = Barlow_Condensed({
 });
 
 export const metadata: Metadata = {
-  title: "Arena",
+  title: "PSM - Narayana",
   description: "Sports Arena Website",
 };
 const dmSans = DM_Sans({

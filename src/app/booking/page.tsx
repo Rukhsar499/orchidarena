@@ -1,6 +1,6 @@
 'use client';
 
-import ContactForm from "../components/ContactForm"
+import Booking from "../components/Booking"
 
 export default function booking() {
     return (
@@ -26,7 +26,7 @@ export default function booking() {
                     </p>
                 </div>
             </section>
-            <ContactForm />
+            <Booking />
         </>
     );
 }

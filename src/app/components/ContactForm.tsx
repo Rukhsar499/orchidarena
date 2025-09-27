@@ -112,14 +112,21 @@ export default function ContactForm() {
                             className="border-b border-gray-400 p-3 w-full transition-colors duration-300 focus:border-black focus:outline-none"
                             required
                         />
-                        <input
-                            type="time"
-                            name="time"
-                            value={formData.time}
-                            onChange={handleChange}
-                            className="border-b border-gray-400 p-3 w-full transition-colors duration-300 focus:border-black focus:outline-none"
-                            required
-                        />
+                         <select
+                        name="time"
+                        value={formData.time}
+                        onChange={handleChange}
+                        className="border-b border-gray-400 p-3 w-full bg-transparent transition-colors duration-300 focus:border-black focus:outline-none"
+                        required
+                    >
+                        <option value="" disabled>
+                            Select Time
+                        </option>
+                        <option value="indoor">6:00-6:30</option>
+                        <option value="outdoor">7:00-7:30</option>
+                        <option value="banquet">8:00-8:30</option>
+                        <option value="other">9:00-9:30</option>
+                    </select>
                     </div>
 
                     {/* Dropdown for Location */}

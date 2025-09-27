@@ -10,6 +10,7 @@ import OrchidArena from "../components/OrchidArena"
 export default function Home() {
   return (
     <>
+    
      <OrchidArena /> 
       {/* <CounterSection/>
       <FeatureSection/>
