@@ -10,21 +10,28 @@ import OrchidArena from "../components/OrchidArena"
 export default function Home() {
   return (
     <>
-      <section className="banner">
-        <Image
-          src="/assets/img/desktop-banner.jpg"
-          alt="Event"
-          className="w-full md:block hidden"
-          width={400}
-          height={400}
-        />
-         <Image
-          src="/assets/img/mob-banner.jpg"
-          alt="Event"
-          className="w-full md:hidden block"
-          width={400}
-          height={400}
-        />
+      <section className="banner relative w-full h-[400px] md:h-[300px]">
+        {/* Desktop Banner */}
+        <div className="hidden md:block relative w-full h-full">
+          <Image
+            src="/assets/img/desktop-banner.jpg"
+            alt="Event"
+            fill
+            className="object-cover w-full h-full"
+            priority
+          />
+        </div>
+
+        {/* Mobile Banner */}
+        <div className="block md:hidden relative w-full h-full">
+          <Image
+            src="/assets/img/mob-banner.jpg"
+            alt="Event"
+            fill
+            className="object-cover w-full h-full"
+            priority
+          />
+        </div>
       </section>
       <OrchidArena />
       {/* <CounterSection/>

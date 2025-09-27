@@ -6,22 +6,29 @@ import Image from "next/image";
 export default function Host() {
     return (
         <>
-        <section className="banner">
-                <Image
-                  src="/assets/img/banner-contact.jpg"
-                  alt="Event"
-                  className="w-full md:block hidden"
-                  width={400}
-                  height={400}
-                />
+        <section className="banner relative w-full h-[400px] md:h-[300px]">
+               {/* Desktop Banner */}
+               <div className="hidden md:block relative w-full h-full">
                  <Image
-                  src="/assets/img/con-phone.jpg"
-                  alt="Event"
-                  className="w-full md:hidden block"
-                  width={400}
-                  height={400}
-                />
-              </section>
+                   src="/assets/img/banner-contact.jpg"
+                   alt="Event"
+                   fill
+                   className="object-cover w-full h-full"
+                   priority
+                 />
+               </div>
+       
+               {/* Mobile Banner */}
+               <div className="block md:hidden relative w-full h-full">
+                 <Image
+                   src="/assets/img/con-phone.jpg"
+                   alt="Event"
+                   fill
+                   className="object-cover w-full h-full"
+                   priority
+                 />
+               </div>
+             </section>
             <Mail />
             <section className="map md:mb-[100px] mb-[50px]">
               <iframe
