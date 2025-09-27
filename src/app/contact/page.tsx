@@ -1,10 +1,27 @@
 'use client';
 import Mail from "../contact/Mail"
 import ContactForm from "../components/ContactForm"
+import Image from "next/image";
 
 export default function Host() {
     return (
         <>
+        <section className="banner">
+                <Image
+                  src="/assets/img/banner-contact.jpg"
+                  alt="Event"
+                  className="w-full md:block hidden"
+                  width={400}
+                  height={400}
+                />
+                 <Image
+                  src="/assets/img/con-phone.jpg"
+                  alt="Event"
+                  className="w-full md:hidden block"
+                  width={400}
+                  height={400}
+                />
+              </section>
             <Mail />
             <section className="map md:mb-[100px] mb-[50px]">
               <iframe
