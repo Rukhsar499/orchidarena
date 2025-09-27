@@ -10,7 +10,7 @@ import OrchidArena from "../components/OrchidArena"
 export default function Home() {
   return (
     <>
-      <section className="banner relative w-full h-[400px] md:h-[300px] mb[50px]">
+      <section className="banner relative w-full h-[400px] md:h-[300px] mb-5">
         {/* Desktop Banner */}
         <div className="hidden md:block relative w-full h-full">
           <Image
