@@ -41,7 +41,7 @@ export default function ContactForm() {
             {/* Left Side Image */}
             <div className="w-full lg:w-1/2 h-64 lg:h-auto">
                 <Image
-                    src="/assets/img/bat.webp"
+                    src="/assets/img/bat.jpg"
                     alt="Event"
                     className="w-full h-full object-cover md:pb-0 pb-10"
                     width={400}
