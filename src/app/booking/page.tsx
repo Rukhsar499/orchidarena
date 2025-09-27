@@ -1,10 +1,33 @@
 'use client';
-
+import Image from "next/image";
 import Booking from "../components/Booking"
 
 export default function booking() {
     return (
         <>
+        <section className="banner relative w-full h-[400px] md:h-[300px]">
+                       {/* Desktop Banner */}
+                       <div className="hidden md:block relative w-full h-full">
+                         <Image
+                           src="/assets/img/banner-booknow.jpg"
+                           alt="Event"
+                           fill
+                           className="object-cover w-full h-full"
+                           priority
+                         />
+                       </div>
+               
+                       {/* Mobile Banner */}
+                       <div className="block md:hidden relative w-full h-full">
+                         <Image
+                           src="/assets/img/banner-booknowmob.jpg"
+                           alt="Event"
+                           fill
+                           className="object-cover w-full h-full"
+                           priority
+                         />
+                       </div>
+                     </section>
             <section className="booking md:[mb-100px] mb-[50px]">
                 <div className="container mx-auto px-4 max-w-7xl">
                     <h2 className="text-[30px] leading-tight md:text-[55px] font-semibold text-center mb-4">Online Booking</h2>
