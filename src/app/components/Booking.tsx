@@ -15,7 +15,7 @@ interface FormData {
 
 interface Location {
   id: number;
-  name: string;
+ subcategory_name: string;
 }
 
 export default function ContactForm() {
@@ -54,7 +54,7 @@ export default function ContactForm() {
   useEffect(() => {
     if (formData.location && formData.date) {
       setSlotsLoading(true);
-      fetch(`/api/get-slots?location=${formData.location}&date=${formData.date}`)
+      fetch(`https://psmapi.thenoncoders.in/api/v1/get_availableslots?subcatid=1/api/get-slots?location=${formData.location}&date=${formData.date}`)
         .then((res) => res.json())
         .then((data) => {
           setTimeSlots(data.slots || []);
@@ -161,8 +161,8 @@ export default function ContactForm() {
               {loading ? "Loading locations..." : "Select Location"}
             </option>
             {locations.map((loc) => (
-              <option key={loc.id} value={loc.name}>
-                {loc.name}
+              <option key={loc.id} value={loc.subcategory_name}>
+                {loc.subcategory_name}
               </option>
             ))}
           </select>
