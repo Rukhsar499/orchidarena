@@ -17,6 +17,9 @@ interface Location {
   subcategory_id: number;
   subcategory_detail: string;
 }
+interface Slot {
+  slot_name: string;
+}
 
 export default function ContactForm() {
   const [formData, setFormData] = useState<FormData>({
@@ -57,39 +60,48 @@ export default function ContactForm() {
       .finally(() => setLoading(false));
   }, []);
 
-  // ✅ Fetch available time slots based on location & date
-  useEffect(() => {
-    if (formData.location && formData.date) {
-      setSlotsLoading(true);
+  // Fetch slots when location or date changes
+useEffect(() => {
+  if (!formData.location || !formData.date) {
+    setTimeSlots([]);
+    return;
+  }
 
-      const selectedLoc = locations.find(
-        (loc) => loc.subcategory_detail === formData.location
-      );
-      const subcatid = selectedLoc ? selectedLoc.subcategory_id : null;
+  setSlotsLoading(true);
 
-      if (!subcatid) {
-        setSlotsLoading(false);
+  const selectedLoc = locations.find(
+    (loc) => loc.subcategory_detail === formData.location
+  );
+  const subcatid = selectedLoc?.subcategory_id;
+
+  if (!subcatid) {
+    setSlotsLoading(false);
+    setTimeSlots([]);
+    return;
+  }
+
+  // Convert date from YYYY-MM-DD → DD-MM-YYYY
+  const [year, month, day] = formData.date.split('-');
+  const formattedDate = `${day}-${month}-${year}`;
+  
+  console.log("Fetching slots URL:", `/api/slots?subcatid=${subcatid}&date=${formattedDate}`);
+  
+  fetch(`/api/slots?subcatid=${subcatid}&date=${formattedDate}`)
+    .then((res) => res.json())
+    .then((data: { status: boolean; data: Slot[] }) => {
+      if (data.status && data.data?.length > 0) {
+        const slotNames = data.data.map((slot) => slot.slot_name);
+        setTimeSlots(slotNames);
+      } else {
         setTimeSlots([]);
-        return;
+        console.log('No slots available for:', subcatid, formattedDate);
       }
+    })
+    .catch(() => setTimeSlots([]))
+    .finally(() => setSlotsLoading(false));
+}, [formData.location, formData.date, locations]);
 
-      fetch(`/api/slots?subcatid=${subcatid}&date=${formData.date}`)
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.status && data.data?.length > 0) {
-            const slotNames = data.data.map((slot: any) => slot.slot_name);
-            setTimeSlots(slotNames);
-          } else {
-            setTimeSlots([]); // no slots
-          }
-        })
-        .catch((err) => {
-          console.error("Error fetching slots:", err);
-          setTimeSlots([]);
-        })
-        .finally(() => setSlotsLoading(false));
-    }
-  }, [formData.location, formData.date]);
+
 
   // ✅ Handle form submit
   const handleSubmit = (e: React.FormEvent) => {
