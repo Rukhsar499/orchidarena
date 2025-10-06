@@ -34,7 +34,18 @@ export default function ContactForm() {
   const [timeSlots, setTimeSlots] = useState<string[]>([]);
   const [slotsLoading, setSlotsLoading] = useState(false);
 
-  // Fetch locations
+  // ✅ Handle input & dropdown changes
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  // ✅ Fetch locations on mount
   useEffect(() => {
     setLoading(true);
     fetch("/api/locations")
@@ -46,38 +57,45 @@ export default function ContactForm() {
       .finally(() => setLoading(false));
   }, []);
 
-  // Fetch time slots when location or date changes
+  // ✅ Fetch available time slots based on location & date
   useEffect(() => {
     if (formData.location && formData.date) {
       setSlotsLoading(true);
-      fetch(
-        `https://psmapi.thenoncoders.in/api/v1/get_availableslots?subcatid=1&date=YYYY-MM-DD`
-      )
+
+      const selectedLoc = locations.find(
+        (loc) => loc.subcategory_detail === formData.location
+      );
+      const subcatid = selectedLoc ? selectedLoc.subcategory_id : null;
+
+      if (!subcatid) {
+        setSlotsLoading(false);
+        setTimeSlots([]);
+        return;
+      }
+
+      fetch(`/api/slots?subcatid=${subcatid}&date=${formData.date}`)
         .then((res) => res.json())
         .then((data) => {
-          setTimeSlots(data.slots || []);
+          if (data.status && data.data?.length > 0) {
+            const slotNames = data.data.map((slot: any) => slot.slot_name);
+            setTimeSlots(slotNames);
+          } else {
+            setTimeSlots([]); // no slots
+          }
         })
-        .catch(() => setTimeSlots([]))
+        .catch((err) => {
+          console.error("Error fetching slots:", err);
+          setTimeSlots([]);
+        })
         .finally(() => setSlotsLoading(false));
     }
   }, [formData.location, formData.date]);
 
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-      ...(name === "location" || name === "date" ? { time: "" } : {}),
-    }));
-  };
-
+  // ✅ Handle form submit
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form Data:", formData);
+
     fetch("/api/submit-form", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -88,6 +106,7 @@ export default function ContactForm() {
       .catch((err) => console.error("Error:", err));
   };
 
+  // ✅ UI
   return (
     <div className="container mx-auto px-4 flex justify-center mb-[50px] md:mb-[100px]">
       <div className="w-full lg:w-1/2 bg-white p-6">
@@ -156,10 +175,7 @@ export default function ContactForm() {
               {loading ? "Loading locations..." : "Select Location"}
             </option>
             {locations.map((loc) => (
-              <option
-                key={loc.subcategory_id}
-                value={loc.subcategory_detail}
-              >
+              <option key={loc.subcategory_id} value={loc.subcategory_detail}>
                 {loc.subcategory_detail}
               </option>
             ))}
