@@ -51,7 +51,7 @@ export default function ContactForm() {
     if (formData.location && formData.date) {
       setSlotsLoading(true);
       fetch(
-        `https://psmapi.thenoncoders.in/api/v1/get_availableslots?subcatid=1/api/get-slots?location=${formData.location}&date=${formData.date}`
+        `https://psmapi.thenoncoders.in/api/v1/get_availableslots?subcatid=1&date=YYYY-MM-DD`
       )
         .then((res) => res.json())
         .then((data) => {
