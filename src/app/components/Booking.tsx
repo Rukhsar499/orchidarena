@@ -13,7 +13,13 @@ interface FormData {
   time: string;
 }
 
+interface Location {
+  id: number;
+  name: string;
+}
+
 export default function ContactForm() {
+  // 🧾 Form data
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
     lastName: "",
@@ -24,44 +30,59 @@ export default function ContactForm() {
     time: "",
   });
 
-  const [timeSlots, setTimeSlots] = useState<string[]>([]); // ⏰ Slots from API
+  // 📍 Locations (from API)
+  const [locations, setLocations] = useState<Location[]>([]);
   const [loading, setLoading] = useState(false);
 
-  // 👇 Fetch available time slots when location OR date changes
+  // ⏰ Time slots
+  const [timeSlots, setTimeSlots] = useState<string[]>([]);
+  const [slotsLoading, setSlotsLoading] = useState(false);
+
+  // 🧩 Fetch locations from GET API
+  useEffect(() => {
+    setLoading(true);
+    fetch("https://psmapi.thenoncoders.in/api/v1/get_subcategory?catid=1")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status) setLocations(data.data);
+      })
+      .catch((err) => console.error("Error fetching locations:", err))
+      .finally(() => setLoading(false));
+  }, []);
+
+  // 🕒 Fetch time slots when location or date changes
   useEffect(() => {
     if (formData.location && formData.date) {
-      setLoading(true);
-      fetch(
-        `/api/get-slots?location=${formData.location}&date=${formData.date}`
-      )
+      setSlotsLoading(true);
+      fetch(`/api/get-slots?location=${formData.location}&date=${formData.date}`)
         .then((res) => res.json())
         .then((data) => {
           setTimeSlots(data.slots || []);
-          setLoading(false);
         })
-        .catch(() => setLoading(false));
+        .catch(() => setTimeSlots([]))
+        .finally(() => setSlotsLoading(false));
     }
   }, [formData.location, formData.date]);
 
+  // ✏️ Handle input changes
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >
   ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-
-    // ⏰ Reset time if location/date changes
-    if (e.target.name === "location" || e.target.name === "date") {
-      setFormData((prev) => ({ ...prev, time: "" }));
-      setTimeSlots([]);
-    }
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+      ...(name === "location" || name === "date" ? { time: "" } : {}),
+    }));
   };
 
+  // 🚀 Handle form submit
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form Data:", formData);
 
-    // 🔗 Send final data to backend
     fetch("/api/submit-form", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -73,9 +94,10 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="container mx-auto px-4 flex justify-center md:[mb-100px] mb-50px">
+    <div className="container mx-auto px-4 flex justify-center mb-[50px] md:mb-[100px]">
       <div className="w-full lg:w-1/2 bg-white p-6">
         <form onSubmit={handleSubmit} className="w-full">
+          {/* Header */}
           <div className="mb-6">
             <p className="text-sm font-medium tracking-wide text-[#000]">
               CONTACT US
@@ -85,7 +107,7 @@ export default function ContactForm() {
             </h2>
           </div>
 
-          
+          {/* First & Last Name */}
           <input
             type="text"
             name="firstName"
@@ -95,8 +117,6 @@ export default function ContactForm() {
             className="border-b border-gray-400 p-3 w-full mb-4 focus:border-black focus:outline-none"
             required
           />
-
-          
           <input
             type="text"
             name="lastName"
@@ -107,7 +127,7 @@ export default function ContactForm() {
             required
           />
 
-         
+          {/* Email & Phone */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
             <input
               type="email"
@@ -129,7 +149,7 @@ export default function ContactForm() {
             />
           </div>
 
-       
+          {/* Location Dropdown */}
           <select
             name="location"
             value={formData.location}
@@ -137,16 +157,17 @@ export default function ContactForm() {
             className="border-b border-gray-400 p-3 w-full mb-4 bg-transparent focus:border-black focus:outline-none"
             required
           >
-            <option value="" disabled>
-              Select Location
+            <option value="">
+              {loading ? "Loading locations..." : "Select Location"}
             </option>
-            <option value="indoor">Indoor Ground</option>
-            <option value="outdoor">Outdoor Ground</option>
-            <option value="banquet">Banquet Hall</option>
-            <option value="other">Other</option>
+            {locations.map((loc) => (
+              <option key={loc.id} value={loc.name}>
+                {loc.name}
+              </option>
+            ))}
           </select>
 
-         
+          {/* Date */}
           <input
             type="date"
             name="date"
@@ -156,7 +177,7 @@ export default function ContactForm() {
             required
           />
 
-          {/* Time Slots from API */}
+          {/* Time Slots */}
           <select
             name="time"
             value={formData.time}
@@ -165,12 +186,12 @@ export default function ContactForm() {
             required
             disabled={!timeSlots.length}
           >
-            <option value="" disabled>
-              {loading
+            <option value="">
+              {slotsLoading
                 ? "Loading slots..."
                 : timeSlots.length
                 ? "Select Time"
-                : "Select Location & Date first"}
+                : "No slots available"}
             </option>
             {timeSlots.map((slot, index) => (
               <option key={index} value={slot}>
@@ -179,7 +200,7 @@ export default function ContactForm() {
             ))}
           </select>
 
-          
+          {/* Submit Button */}
           <button
             type="submit"
             className="flex items-center mt-4 justify-center gap-2 w-full sm:w-auto px-6 py-3 bg-[#91be4d] text-white font-semibold hover:bg-green-700 transition"
