@@ -14,12 +14,11 @@ interface FormData {
 }
 
 interface Location {
-  id: number;
- subcategory_name: string;
+  subcategory_id: number;
+  subcategory_detail: string;
 }
 
 export default function ContactForm() {
-  // 🧾 Form data
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
     lastName: "",
@@ -30,31 +29,30 @@ export default function ContactForm() {
     time: "",
   });
 
-  // 📍 Locations (from API)
   const [locations, setLocations] = useState<Location[]>([]);
   const [loading, setLoading] = useState(false);
-
-  // ⏰ Time slots
   const [timeSlots, setTimeSlots] = useState<string[]>([]);
   const [slotsLoading, setSlotsLoading] = useState(false);
 
-  // 🧩 Fetch locations from GET API
+  // Fetch locations
   useEffect(() => {
     setLoading(true);
-    fetch("https://psmapi.thenoncoders.in/api/v1/get_subcategory?catid=1")
+    fetch("/api/locations")
       .then((res) => res.json())
       .then((data) => {
         if (data.status) setLocations(data.data);
       })
-      .catch((err) => console.error("Error fetching locations:", err))
+      .catch((err) => console.error(err))
       .finally(() => setLoading(false));
   }, []);
 
-  // 🕒 Fetch time slots when location or date changes
+  // Fetch time slots when location or date changes
   useEffect(() => {
     if (formData.location && formData.date) {
       setSlotsLoading(true);
-      fetch(`https://psmapi.thenoncoders.in/api/v1/get_availableslots?subcatid=1/api/get-slots?location=${formData.location}&date=${formData.date}`)
+      fetch(
+        `https://psmapi.thenoncoders.in/api/v1/get_availableslots?subcatid=1/api/get-slots?location=${formData.location}&date=${formData.date}`
+      )
         .then((res) => res.json())
         .then((data) => {
           setTimeSlots(data.slots || []);
@@ -64,7 +62,6 @@ export default function ContactForm() {
     }
   }, [formData.location, formData.date]);
 
-  // ✏️ Handle input changes
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
@@ -78,11 +75,9 @@ export default function ContactForm() {
     }));
   };
 
-  // 🚀 Handle form submit
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form Data:", formData);
-
     fetch("/api/submit-form", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -107,7 +102,7 @@ export default function ContactForm() {
             </h2>
           </div>
 
-          {/* First & Last Name */}
+          {/* Name */}
           <input
             type="text"
             name="firstName"
@@ -161,8 +156,11 @@ export default function ContactForm() {
               {loading ? "Loading locations..." : "Select Location"}
             </option>
             {locations.map((loc) => (
-              <option key={loc.id} value={loc.subcategory_name}>
-                {loc.subcategory_name}
+              <option
+                key={loc.subcategory_id}
+                value={loc.subcategory_detail}
+              >
+                {loc.subcategory_detail}
               </option>
             ))}
           </select>
@@ -200,7 +198,7 @@ export default function ContactForm() {
             ))}
           </select>
 
-          {/* Submit Button */}
+          {/* Submit */}
           <button
             type="submit"
             className="flex items-center mt-4 justify-center gap-2 w-full sm:w-auto px-6 py-3 bg-[#91be4d] text-white font-semibold hover:bg-green-700 transition"
