@@ -2,22 +2,27 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
+    const catid = 1; // <-- fix catid value
+
     const res = await fetch(
-      "https://psmapi.thenoncoders.in/api/v1/get_subcategory?catid=1",
+      `https://psmapi.thenoncoders.in/api/v1/get_subcategory?catid=${encodeURIComponent(catid)}`,
       {
+        method: "GET",
         headers: {
-              'X-Api-Key': '8f2c1d73-9b67-4e0e-bc92-1f84f5f0d9a3-Fe3YpM8vQ6rS1xZ0nL4tB9uH7kC2wA5d'
- , // tumhari valid key
+          "X-Api-Key": process.env.PSM_API_KEY as string, // your key from .env
         },
       }
     );
 
-    const data = await res.json();
+    const data: {
+      status: boolean;
+      data: { subcategory_id: number; subcategory_detail: string }[];
+    } = await res.json();
 
     // Map backend fields to frontend expected fields
-    const mappedData = (data.data || []).map((loc: any) => ({
+    const mappedData = (data.data || []).map((loc) => ({
       subcategory_id: loc.subcategory_id,
-      subcategory_detail: loc.subcategory_detail, // frontend me name ke liye
+      subcategory_detail: loc.subcategory_detail,
     }));
 
     return NextResponse.json({
