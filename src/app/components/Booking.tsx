@@ -85,7 +85,7 @@ export default function ContactForm() {
             </h2>
           </div>
 
-          {/* First Name */}
+          
           <input
             type="text"
             name="firstName"
@@ -96,7 +96,7 @@ export default function ContactForm() {
             required
           />
 
-          {/* Last Name */}
+          
           <input
             type="text"
             name="lastName"
@@ -107,7 +107,7 @@ export default function ContactForm() {
             required
           />
 
-          {/* Email & Phone */}
+         
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
             <input
               type="email"
@@ -129,7 +129,7 @@ export default function ContactForm() {
             />
           </div>
 
-          {/* Location */}
+       
           <select
             name="location"
             value={formData.location}
@@ -146,7 +146,7 @@ export default function ContactForm() {
             <option value="other">Other</option>
           </select>
 
-          {/* Date */}
+         
           <input
             type="date"
             name="date"
@@ -179,7 +179,7 @@ export default function ContactForm() {
             ))}
           </select>
 
-          {/* Submit Button */}
+          
           <button
             type="submit"
             className="flex items-center mt-4 justify-center gap-2 w-full sm:w-auto px-6 py-3 bg-[#91be4d] text-white font-semibold hover:bg-green-700 transition"
