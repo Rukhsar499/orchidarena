@@ -126,9 +126,7 @@ useEffect(() => {
         <form onSubmit={handleSubmit} className="w-full">
           {/* Header */}
           <div className="mb-6">
-            <p className="text-sm font-medium tracking-wide text-[#000]">
-              CONTACT US
-            </p>
+           
             <h2 className="md:text-[55px] text-[30px] leading-tight font-semibold mt-2 md:leading-[55px]">
               PSM Turf – Let the games begin!
             </h2>

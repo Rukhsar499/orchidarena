@@ -29,6 +29,7 @@ export default function Host() {
                  />
                </div>
              </section>
+              <ContactForm />
             <Mail />
             <section className="map md:mb-[100px] mb-[50px]">
               <iframe
@@ -40,7 +41,7 @@ export default function Host() {
   referrerPolicy="no-referrer-when-downgrade"
 />
             </section>
-            <ContactForm />
+           
         </>
     );
 }
