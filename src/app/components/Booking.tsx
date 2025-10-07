@@ -232,7 +232,7 @@ useEffect(() => {
             className="flex items-center mt-4 justify-center gap-2 w-full sm:w-auto px-6 py-3 bg-[#91be4d] text-white font-semibold hover:bg-green-700 transition"
           >
             <Image src="/assets/img/send.png" alt="Send" width={20} height={20} />
-            <span>Get In Touch</span>
+            <span>Book Now</span>
           </button>
         </form>
       </div>
