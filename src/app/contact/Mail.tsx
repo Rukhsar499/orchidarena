@@ -32,7 +32,7 @@ const facilities = [
     },
     {
         title: "Address",
-        desc: "Narayana Street kolkata 700039",
+        desc: "Plot No IIF/11, Unit No. ESNTB0202, Ecospace Business Park, Rajarhat, New Town, South Twenty Four Parganas, West Bengal, 700156",
         icon: (
            <Image
                 src="/assets/img/location.png"

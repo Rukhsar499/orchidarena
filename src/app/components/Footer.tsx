@@ -19,13 +19,13 @@ type SocialItem = {
 
 
 const legalLinks: LinkItem[] = [
-    { name: "Home", href: "/shipping-policy" },
-    { name: "About Us", href: "/refund-policy" },
-    { name: "Host an Event", href: "/terms-and-conditions" },
-    { name: "FAQs", href: "/cancellation-policy" },
-    { name: "Contact Us", href: "/privacy-policy" },
-    { name: "Privacy policy", href: "/privacy-policy" },
-    { name: "Turf Booking Policy", href: "/privacy-policy" },
+    { name: "Home", href: "/" },
+    { name: "About Us", href: "/about-us" },
+    { name: "Contact Us", href: "/contact" },
+    { name: "Privacy Policy", href: "/privacy-policy" },
+    { name: "Booking Policy", href: "/booking-policy" },
+    { name: "Cancellation Policy", href: "/Cancellation Policy" },
+   
 ];
 
 const socialLinks: SocialItem[] = [
@@ -47,9 +47,9 @@ const Footer: React.FC = () => {
                 <div className="flex flex-wrap gap-8 text-left">
                     <div className="md:w-[30%] w-full">
                         <div className="flex flex-col">
-                            <h2 className="text-[#fff] mb-6 text-[21px] font-semibold">KOLKATA&apos;S PREMIER SPORTS ARENA</h2>
+                            <h2 className="text-[#fff] mb-6 text-[21px] font-semibold">PSM MANAGEMENT SERVICES PVT LTD.</h2>
                             <p className="text-white/70 text-[17px]">
-                                <b>Orchid Arena</b> is your premier multi-sports destination offering world-class facilities for football, pickleball, and cricket, well-maintained environment. Orchid Arena is the perfect venue for sports lovers to train, play, and compete every day.
+                                Our cutting-edge football turf is in multiple locations across West Bengal. It is the perfect place for celebration, competition, and leisure. We have something for you if you&apos;re just here to play football. Enter our well-kept football field or experience the excitement of a game on our floodlit field, which is ideal for both day and night games.
                             </p>
                         </div>
                     </div>
@@ -58,7 +58,7 @@ const Footer: React.FC = () => {
                         <div className=" flex flex-col items-start justify-start text-left">
                             <h2 className="text-[#fff] mb-6 text-[21px] font-semibold">OFFICE</h2>
                             <p className="text-white/70 text-[17px]">
-                                11A, 1J, E Topsia Rd, Mirania Gardens, East Topsia, Topsia, Kolkata, West Bengal 700105
+                               Plot No IIF/11, Unit No. ESNTB0202, Ecospace Business Park, Rajarhat, New Town, South Twenty Four Parganas, West Bengal, 700156
                             </p>
                             <div className="pt-8">
                                 <ul className="space-y-2 text-white/70 text-[16px] font-['DM_Sans'] ">
@@ -110,7 +110,7 @@ const Footer: React.FC = () => {
 
                 <hr className="my-6 border-white/20" />
                 <p className="text-left text-white text-lg">
-                    Orchid Arena©{new Date().getFullYear()} • All Rights Reserved
+                    PSM MANAGEMENT SERVICES PVT LTD.©{new Date().getFullYear()} • All Rights Reserved
                 </p>
             </div>
         </footer >
