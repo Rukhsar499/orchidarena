@@ -21,7 +21,8 @@ export async function GET(req: Request) {
 
   try {
     const res = await fetch(
-      `https://psmapi.thenoncoders.in/api/v1/get_availableslots?subcatid=${encodeURIComponent(subcatid)}&date=${encodeURIComponent(formattedDate)}`,
+      `https://psmapi.thenoncoders.in/api/v1/get_availableslots?subcatid=${encodeURIComponent(subcatid)}&bdate=${encodeURIComponent(formattedDate)}`,
+
       {
         headers: {
           "X-Api-Key": process.env.PSM_API_KEY as string,
