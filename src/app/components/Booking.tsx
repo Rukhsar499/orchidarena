@@ -89,6 +89,7 @@ useEffect(() => {
   fetch(`/api/slots?subcatid=${subcatid}&date=${formattedDate}`)
     .then((res) => res.json())
     .then((data: { status: boolean; data: Slot[] }) => {
+    console.log("data slots:", data);
       if (data.status && data.data?.length > 0) {
         const slotNames = data.data.map((slot) => slot.slot_name);
         setTimeSlots(slotNames);

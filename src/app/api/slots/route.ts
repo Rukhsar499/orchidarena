@@ -30,9 +30,31 @@ export async function GET(req: Request) {
       }
     );
 
-    const data = await res.json();
+const data: {
+      status: boolean;
+      data: { slot_rate_id: number; week_day_id:number; week_day:string; slot_id:number; slot_name:string; slot_rate:number }[];
+    } = await res.json();
 
-    const slotNames = (data.data || []).map((slot: any) => slot.slot_name);
+    // Map backend fields to frontend expected fields
+    const slotNames = (data.data || []).map((loc) => ({
+      slot_rate_id: loc.slot_rate_id,
+      week_day_id: loc.week_day_id,
+      week_day: loc.week_day,
+      slot_id: loc.slot_id,
+      slot_name: loc.slot_name,
+      slot_rate: loc.slot_rate,
+    }));
+
+
+    /*"slot_rate_id": 196,
+            "week_day_id": 7,
+            "week_day": "Saturday",
+            "slot_id": 1,
+            "slot_name": "06:00 AM-07:00 AM",
+            "slot_rate": 2300.00*/
+    //const data = await res.json();
+
+    //const slotNames = (data.data || []).map((slot: any) => slot.slot_name);
 
     return NextResponse.json({
       status: true,
