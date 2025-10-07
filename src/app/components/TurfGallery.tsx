@@ -9,7 +9,7 @@ export default function TurfGallery() {
         {/* Left Large Image */}
         <div className="relative group overflow-hidden rounded-lg">
           <Image
-            src="/assets/img/pickle.jpg" // replace with your image
+            src="/assets/img/pickle.png" 
             alt="Main Turf"
             width={800}
             height={600}
@@ -22,7 +22,7 @@ export default function TurfGallery() {
           {/* Top Right Large Image */}
           <div className="col-span-2 relative group overflow-hidden rounded-lg">
             <Image
-              src="/assets/img/score.jpg" // replace with your image
+              src="/assets/img/score.jpg"
               alt="Football Action"
               width={600}
               height={400}
@@ -35,7 +35,7 @@ export default function TurfGallery() {
           {/* Bottom Two Small Images */}
           <div className="relative group overflow-hidden rounded-lg">
             <Image
-              src="/assets/img/wicket.jpg" // replace with your image
+              src="/assets/img/wicket.jpg" 
               alt="Cricket Turf"
               width={300}
               height={200}
@@ -45,7 +45,7 @@ export default function TurfGallery() {
 
           <div className="relative group overflow-hidden rounded-lg">
             <Image
-              src="/assets/img/playground.jpg" // replace with your image
+              src="/assets/img/playground.jpg" 
               alt="Evening Turf"
               width={300}
               height={200}
