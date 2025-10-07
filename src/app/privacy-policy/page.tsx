@@ -4,7 +4,11 @@ export default function PrivacyPolicy() {
   
  return (
     <>
-   
+     <section className="bg-black">
+            <div className="container mx-auto px-4 py-30">
+            <h4 className="text-center text-white text-3xl md:text-5xl">Privacy Policy</h4>
+            </div>
+         </section>
 
       <section className="max-w-6xl mx-auto px-6 py-16 text-gray-800">
         <h1 className="text-3xl md:text-4xl font-bold mb-4 text-center">PSM Turf — Privacy Policy</h1>
