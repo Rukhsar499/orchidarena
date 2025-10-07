@@ -7,12 +7,18 @@ import GeneralInformation from "@/components/faq/GeneralInformation";
 
 const page = () => {
   return (
-    <div className="pt-50">
+    <>
+     <section className="bg-black">
+            <div className="container mx-auto px-4 py-30">
+            <h4 className="text-center text-white text-3xl md:text-5xl">FAQ</h4>
+            </div>
+         </section>
+
+    
+    <div className="">
       <div className="bg-[#F3F8F9]">
-        <div className="container mx-auto px-4 py-16">
-          <h2 className="md:text-[50px] text-[40px] uppercase font-bold text-center md:mb-10 mb-8">
-            FAQs
-          </h2>
+        <div className="container mx-auto px-4 py-10">
+          
           <div>
             <h3 className="md:text-[40px] text-[30px] font-semibold uppercase text-center md:mb-8 mb-6">
               General Information
@@ -40,6 +46,7 @@ const page = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
