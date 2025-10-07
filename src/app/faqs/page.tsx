@@ -1,9 +1,9 @@
 "use client";
 
 import GeneralInformation from "@/components/faq/GeneralInformation";
-import BookingFees from "@/components/faq/BookingFees";
-import EventsTournaments from "@/components/faq/EventsTournaments";
-import FacilitiesAmenities from "@/components/faq/FacilitiesAmenities";
+// import BookingFees from "@/components/faq/BookingFees";
+// import EventsTournaments from "@/components/faq/EventsTournaments";
+// import FacilitiesAmenities from "@/components/faq/FacilitiesAmenities";
 
 const page = () => {
   return (
@@ -19,24 +19,24 @@ const page = () => {
             </h3>
             <GeneralInformation />
           </div>
-          <div className="mt-20">
+          {/* <div className="mt-20">
             <h3 className="md:text-[40px] text-[30px] font-semibold uppercase text-center md:mb-8 mb-6">
               Booking & Fees
             </h3>
             <BookingFees />
-          </div>
-          <div className="mt-20">
+          </div> */}
+          {/* <div className="mt-20">
             <h3 className="md:text-[40px] text-[30px] font-semibold uppercase text-center md:mb-8 mb-6">
               Events & Tournaments
             </h3>
             <EventsTournaments />
-          </div>
-          <div className="mt-20">
+          </div> */}
+          {/* <div className="mt-20">
             <h3 className="md:text-[40px] text-[30px] font-semibold uppercase text-center md:mb-8 mb-6">
               Facilities & Amenities
             </h3>
             <FacilitiesAmenities />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
