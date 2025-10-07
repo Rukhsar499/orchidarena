@@ -11,7 +11,7 @@ export default function TurfGallery() {
           <Image
             src="/assets/img/pickle.png" 
             alt="Main Turf"
-            width={800}
+            width={600}
             height={600}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
