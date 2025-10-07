@@ -27,7 +27,7 @@ const OrchidArena: React.FC = () => {
                     WELCOME TO PSM Turf
                 </h2>
                 <p className="text-[18px] text-[#656565]">
-                    Our cutting-edge multisport stadium is situated in the New Town, Rajarhat neighbourhood. It is the perfect place for celebration, competition, and leisure. We have something for everyone, if you&apos;re just here to play football. Enter our well-kept football field or experience the excitement of a game on our floodlit field, which is ideal for both day and night games. Our location is perfect for holding leagues and tournaments of all kinds because it has excellent facilities and lots of room. We cater to serious athletes to recreational players of all ability levels. Our arena provides a lively, dynamic setting that unites people via the lovely game of football. Go for it. The lights are on. Now let&apos;s get started.
+                    Our cutting-edge football turf is in multiple locations across West Bengal. It is the perfect place for celebration, competition, and leisure. We have something for you if you're just here to play football. Enter our well-kept football field or experience the excitement of a game on our floodlit field, which is ideal for both day and night games. Our turf is perfect for holding leagues and tournaments of all kinds because it has excellent facilities and lots of room. We cater to serious athletes to recreational players of all ability levels. Our arena provides a lively, dynamic setting that unites people via lovely game of football. Go for it. The lights are on. Now let&apos;s get started.
 
                 </p>
 
