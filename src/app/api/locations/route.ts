@@ -10,7 +10,9 @@ export async function GET() {
         method: "GET",
         headers: {
           "X-Api-Key": process.env.PSM_API_KEY as string, // your key from .env
+           "Origin": "https://psmapi.thenoncoders.in",
         },
+        cache: "no-store",
       }
     );
 
