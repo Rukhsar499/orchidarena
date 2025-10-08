@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
- title: "Host An Event - Narayana",
-  description: "Sports Narayana Website",
+ title: "Booking Online - PSM",
+  description: "Booking Online - PSM - Truf",
 };
 
 
