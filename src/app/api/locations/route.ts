@@ -15,7 +15,7 @@ export async function GET() {
         cache: "no-store",
       }
     );
-
+  
     const data: {
       status: boolean;
       data: { subcategory_id: number; subcategory_detail: string }[];
