@@ -222,9 +222,9 @@ export default function ContactForm() {
               <table className="w-full border-collapse border border-gray-300">
                 <thead>
                   <tr className="bg-[#91be4d] text-white">
-                    <th className="py-3 px-4 text-left">Time Slot</th>
-                    <th className="py-3 px-4 text-center">Rate</th>
-                    <th className="py-3 px-4 text-center">Select</th>
+                    <th className="py-3 px-4 text-left text-[20px] font-light">Time Slot</th>
+                    <th className="py-3 px-4 text-center text-[20px] font-light">Rate</th>
+                    <th className="py-3 px-4 text-center text-[20px] font-light">Select</th>
                   </tr>
                 </thead>
                 <tbody>
