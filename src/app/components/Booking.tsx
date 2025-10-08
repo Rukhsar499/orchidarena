@@ -123,9 +123,18 @@ export default function ContactForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    
+    const bookingData = {
+      ...formData,
+      total,
+    };
 
-    
+    // 🧠 Save in localStorage
+    localStorage.setItem("psm_booking", JSON.stringify(bookingData));
+
+    console.log("Saved booking data:", bookingData);
+
+    // ✅ Redirect to cart page
+    window.location.href = "/cart";
   };
 
   // ✅ UI (Design Same)
