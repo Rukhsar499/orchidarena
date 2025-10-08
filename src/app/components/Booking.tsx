@@ -10,15 +10,17 @@ interface FormData {
   phone: string;
   location: string;
   date: string;
-  time: string;
+  selectedSlots: string[];
 }
 
 interface Location {
   subcategory_id: number;
   subcategory_detail: string;
 }
+
 interface Slot {
   slot_name: string;
+  slot_rate: number;
 }
 
 export default function ContactForm() {
@@ -29,15 +31,16 @@ export default function ContactForm() {
     phone: "",
     location: "",
     date: "",
-    time: "",
+    selectedSlots: [],
   });
 
   const [locations, setLocations] = useState<Location[]>([]);
   const [loading, setLoading] = useState(false);
-  const [timeSlots, setTimeSlots] = useState<string[]>([]);
+  const [slots, setSlots] = useState<Slot[]>([]);
   const [slotsLoading, setSlotsLoading] = useState(false);
+  const [total, setTotal] = useState(0);
 
-  // ✅ Handle input & dropdown changes
+  // ✅ Handle input changes
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -60,51 +63,63 @@ export default function ContactForm() {
       .finally(() => setLoading(false));
   }, []);
 
-  // Fetch slots when location or date changes
-useEffect(() => {
-  if (!formData.location || !formData.date) {
-    setTimeSlots([]);
-    return;
-  }
+  // ✅ Fetch slots when location or date changes
+  useEffect(() => {
+    if (!formData.location || !formData.date) {
+      setSlots([]);
+      return;
+    }
 
-  setSlotsLoading(true);
+    setSlotsLoading(true);
 
-  const selectedLoc = locations.find(
-    (loc) => loc.subcategory_detail === formData.location
-  );
-  const subcatid = selectedLoc?.subcategory_id;
+    const selectedLoc = locations.find(
+      (loc) => loc.subcategory_detail === formData.location
+    );
+    const subcatid = selectedLoc?.subcategory_id;
 
-  if (!subcatid) {
-    setSlotsLoading(false);
-    setTimeSlots([]);
-    return;
-  }
+    if (!subcatid) {
+      setSlotsLoading(false);
+      setSlots([]);
+      return;
+    }
 
-  // Convert date from YYYY-MM-DD → DD-MM-YYYY
-  const [year, month, day] = formData.date.split('-');
-  const formattedDate = `${day}-${month}-${year}`;
-  
-  console.log("Fetching slots URL:", `/api/slots?subcatid=${subcatid}&date=${formattedDate}`);
-  
-  fetch(`/api/slots?subcatid=${subcatid}&date=${formattedDate}`)
-    .then((res) => res.json())
-    .then((data: { status: boolean; data: Slot[] }) => {
-    console.log("data slots:", data);
-      if (data.status && data.data?.length > 0) {
-        const slotNames = data.data.map((slot) => slot.slot_name);
-        setTimeSlots(slotNames);
-      } else {
-        setTimeSlots([]);
-        console.log('No slots available for:', subcatid, formattedDate);
-      }
-    })
-    .catch(() => setTimeSlots([]))
-    .finally(() => setSlotsLoading(false));
-}, [formData.location, formData.date, locations]);
+    // Convert date YYYY-MM-DD → DD-MM-YYYY
+    const [year, month, day] = formData.date.split("-");
+    const formattedDate = `${day}-${month}-${year}`;
 
+    console.log(
+      "Fetching slots URL:",
+      `/api/slots?subcatid=${subcatid}&date=${formattedDate}`
+    );
 
+    fetch(`/api/slots?subcatid=${subcatid}&date=${formattedDate}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Slots API response:", data);
+        if (data.status && Array.isArray(data.data)) {
+          setSlots(data.data);
+        } else {
+          setSlots([]);
+        }
+      })
+      .catch(() => setSlots([]))
+      .finally(() => setSlotsLoading(false));
+  }, [formData.location, formData.date, locations]);
 
-  // ✅ Handle form submit
+  // ✅ Handle slot selection
+  const toggleSlot = (slot: Slot) => {
+    let updatedSlots = [...formData.selectedSlots];
+    if (updatedSlots.includes(slot.slot_name)) {
+      updatedSlots = updatedSlots.filter((s) => s !== slot.slot_name);
+      setTotal((prev) => prev - slot.slot_rate);
+    } else {
+      updatedSlots.push(slot.slot_name);
+      setTotal((prev) => prev + slot.slot_rate);
+    }
+    setFormData((prev) => ({ ...prev, selectedSlots: updatedSlots }));
+  };
+
+  // ✅ Handle submit
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form Data:", formData);
@@ -121,38 +136,35 @@ useEffect(() => {
 
   // ✅ UI
   return (
-    <div className="container mx-auto px-4 flex justify-center mb-[50px] md:mb-[100px]">
-      <div className="w-full lg:w-1/2 bg-white p-6">
+    <div className="container mx-auto px-4 flex justify-center mb-[80px]">
+      <div className="w-full lg:w-2/3 bg-white p-6 shadow-md rounded-lg">
         <form onSubmit={handleSubmit} className="w-full">
-          {/* Header */}
-          <div className="mb-6">
-           
-            <h2 className="md:text-[55px] text-[30px] leading-tight font-semibold mt-2 md:leading-[55px]">
-              PSM Turf – Let the games begin!
-            </h2>
+          <h2 className="text-3xl md:text-4xl font-semibold mb-6">
+            PSM Turf – Let the games begin!
+          </h2>
+
+          {/* Basic Info */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+            <input
+              type="text"
+              name="firstName"
+              placeholder="First Name"
+              value={formData.firstName}
+              onChange={handleChange}
+              className="border-b border-gray-400 p-3 w-full focus:border-black focus:outline-none"
+              required
+            />
+            <input
+              type="text"
+              name="lastName"
+              placeholder="Last Name"
+              value={formData.lastName}
+              onChange={handleChange}
+              className="border-b border-gray-400 p-3 w-full focus:border-black focus:outline-none"
+              required
+            />
           </div>
 
-          {/* Name */}
-          <input
-            type="text"
-            name="firstName"
-            placeholder="First Name"
-            value={formData.firstName}
-            onChange={handleChange}
-            className="border-b border-gray-400 p-3 w-full mb-4 focus:border-black focus:outline-none"
-            required
-          />
-          <input
-            type="text"
-            name="lastName"
-            placeholder="Last Name"
-            value={formData.lastName}
-            onChange={handleChange}
-            className="border-b border-gray-400 p-3 w-full mb-4 focus:border-black focus:outline-none"
-            required
-          />
-
-          {/* Email & Phone */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
             <input
               type="email"
@@ -174,7 +186,7 @@ useEffect(() => {
             />
           </div>
 
-          {/* Location Dropdown */}
+          {/* Location */}
           <select
             name="location"
             value={formData.location}
@@ -202,37 +214,70 @@ useEffect(() => {
             required
           />
 
-          {/* Time Slots */}
-          <select
-            name="time"
-            value={formData.time}
-            onChange={handleChange}
-            className="border-b border-gray-400 p-3 w-full bg-transparent focus:border-black focus:outline-none"
-            required
-            disabled={!timeSlots.length}
-          >
-            <option value="">
-              {slotsLoading
-                ? "Loading slots..."
-                : timeSlots.length
-                ? "Select Time"
-                : "No slots available"}
-            </option>
-            {timeSlots.map((slot, index) => (
-              <option key={index} value={slot}>
-                {slot}
-              </option>
-            ))}
-          </select>
+          {/* Slots Table */}
+          {slotsLoading ? (
+            <p className="text-center py-4">Loading available slots...</p>
+          ) : slots.length > 0 ? (
+            <div className="overflow-x-auto mt-6">
+              <table className="w-full border-collapse border border-gray-300">
+                <thead>
+                  <tr className="bg-[#91be4d] text-white">
+                    <th className="py-3 px-4 text-left">Time Slot</th>
+                    <th className="py-3 px-4 text-center">Rate</th>
+                    <th className="py-3 px-4 text-center">Select</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {slots.map((slot, index) => (
+                    <tr
+                      key={index}
+                      className={`border-t ${
+                        formData.selectedSlots.includes(slot.slot_name)
+                          ? "bg-green-100"
+                          : "bg-white"
+                      }`}
+                    >
+                      <td className="py-3 px-4">{slot.slot_name}</td>
+                      <td className="py-3 px-4 text-center">
+                        ₹{slot.slot_rate}
+                      </td>
+                      <td className="py-3 px-4 text-center">
+                        <input
+                          type="checkbox"
+                          checked={formData.selectedSlots.includes(
+                            slot.slot_name
+                          )}
+                          onChange={() => toggleSlot(slot)}
+                          className="w-5 h-5 accent-[#91be4d]"
+                        />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
 
-          {/* Submit */}
-          <button
-            type="submit"
-            className="flex items-center mt-4 justify-center gap-2 w-full sm:w-auto px-6 py-3 bg-[#91be4d] text-white font-semibold hover:bg-green-700 transition"
-          >
-            <Image src="/assets/img/send.png" alt="Send" width={20} height={20} />
-            <span>Book Now</span>
-          </button>
+              {/* Total & Proceed */}
+              <div className="flex justify-between items-center mt-6">
+                <h3 className="text-lg font-semibold">
+                  Total: ₹{total.toFixed(2)}
+                </h3>
+                <button
+                  type="submit"
+                  disabled={formData.selectedSlots.length === 0}
+                  className="px-6 py-3 bg-[#91be4d] text-white font-semibold hover:bg-green-700 transition disabled:bg-gray-400"
+                >
+                  Proceed to Book
+                </button>
+              </div>
+            </div>
+          ) : (
+            formData.date &&
+            formData.location && (
+              <p className="text-center py-4 text-gray-600">
+                No slots available for the selected date and location.
+              </p>
+            )
+          )}
         </form>
       </div>
     </div>
