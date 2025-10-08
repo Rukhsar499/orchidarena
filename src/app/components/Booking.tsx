@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
+import Link from "next/link";
 
 interface FormData {
   firstName: string;
@@ -83,7 +83,7 @@ export default function ContactForm() {
       return;
     }
 
-    // Convert date YYYY-MM-DD → DD-MM-YYYY
+    // ✅ Convert date YYYY-MM-DD → DD-MM-YYYY
     const [year, month, day] = formData.date.split("-");
     const formattedDate = `${day}-${month}-${year}`;
 
@@ -119,22 +119,25 @@ export default function ContactForm() {
     setFormData((prev) => ({ ...prev, selectedSlots: updatedSlots }));
   };
 
-  // ✅ Handle submit
+  // ✅ Handle submit (localStorage + redirect)
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form Data:", formData);
 
-    fetch("/api/submit-form", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log("Response:", data))
-      .catch((err) => console.error("Error:", err));
+    const bookingData = {
+      ...formData,
+      total,
+    };
+
+    // 🧠 Save in localStorage
+    localStorage.setItem("psm_booking", JSON.stringify(bookingData));
+
+    console.log("Saved booking data:", bookingData);
+
+    // ✅ Redirect to cart page
+    window.location.href = "/cart";
   };
 
-  // ✅ UI
+  // ✅ UI (Design Same)
   return (
     <div className="container mx-auto px-4 flex justify-center mb-[80px]">
       <div className="w-full lg:w-2/3 bg-white p-6 shadow-md rounded-lg">
@@ -222,9 +225,15 @@ export default function ContactForm() {
               <table className="w-full border-collapse border border-gray-300">
                 <thead>
                   <tr className="bg-[#91be4d] text-white">
-                    <th className="py-3 px-4 text-left text-[20px] font-light">Time Slot</th>
-                    <th className="py-3 px-4 text-center text-[20px] font-light">Rate</th>
-                    <th className="py-3 px-4 text-center text-[20px] font-light">Select</th>
+                    <th className="py-3 px-4 text-left text-[20px] font-light">
+                      Time Slot
+                    </th>
+                    <th className="py-3 px-4 text-center text-[20px] font-light">
+                      Rate
+                    </th>
+                    <th className="py-3 px-4 text-center text-[20px] font-light">
+                      Select
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
