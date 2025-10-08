@@ -24,7 +24,7 @@ const legalLinks: LinkItem[] = [
     { name: "Contact Us", href: "/contact" },
     { name: "Privacy Policy", href: "/privacy-policy" },
     { name: "Booking Policy", href: "/booking-policy" },
-    { name: "Cancellation Policy", href: "/cancellation-policy" },
+    // { name: "Cancellation Policy", href: "/cancellation-policy" },
    
 ];
 
