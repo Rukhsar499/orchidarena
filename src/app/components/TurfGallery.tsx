@@ -9,7 +9,7 @@ export default function TurfGallery() {
         {/* Left Large Image */}
         <div className="relative group overflow-hidden rounded-lg">
           <Image
-            src="/assets/img/pickle.png" 
+            src="/assets/img/pickle.webp" 
             alt="Main Turf"
             width={600}
             height={600}
