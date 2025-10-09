@@ -21,9 +21,8 @@ export default function Header() {
     <>
       {/* Navbar */}
       <header
-        className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${
-          scrolled ? "bg-black/80 shadow-md" : "bg-transparent"
-        }`}
+        className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${scrolled ? "bg-black/80 shadow-md" : "bg-transparent"
+          }`}
       >
         <div className="mx-auto flex items-center justify-between px-10 md:py-2">
           {/* Logo */}
@@ -36,13 +35,14 @@ export default function Header() {
             />
           </Link>
 
-          {/* Center Menu */}
-          <nav className="hidden md:flex items-center gap-8 text-white text-[17px] font-semibold absolute left-1/2 -translate-x-1/2">
+        <div className="flex space-x-6">
+            {/* Center Menu */}
+          <nav className="hidden md:flex items-center gap-8 text-white text-[17px] font-semibold ml-10">
             <Link href="/">HOME</Link>
             <Link href="/about-us">ABOUT US</Link>
             {/* <Link href="/facilities">FACILITIES</Link>
-            <Link href="/host-an-event">HOST AN EVENT</Link> */}
-            <Link href="/faqs">FAQS</Link> 
+  <Link href="/host-an-event">HOST AN EVENT</Link> */}
+            <Link href="/faqs">FAQS</Link>
             <Link href="/contact">CONTACT US</Link>
           </nav>
 
@@ -65,13 +65,13 @@ export default function Header() {
             </Link>
           </div>
         </div>
+        </div>
       </header>
 
       {/* Side Drawer */}
       <div
-        className={`block md:hidden fixed top-0 right-0 h-full w-64 bg-black text-white transform transition-transform duration-300 z-50 ${
-          openMenu ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`block md:hidden fixed top-0 right-0 h-full w-64 bg-black text-white transform transition-transform duration-300 z-50 ${openMenu ? "translate-x-0" : "translate-x-full"
+          }`}
       >
         <div className="p-6 flex flex-col gap-6">
           <button
@@ -92,6 +92,7 @@ export default function Header() {
           <Link href="/contact" onClick={() => setOpenMenu(false)}>
             CONTACT US
           </Link>
+          <Link href="/faqs">FAQS</Link>
         </div>
       </div>
 
