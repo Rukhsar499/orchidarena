@@ -8,7 +8,7 @@ export async function POST(req: Request) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-       "Authorization": `Bearer ${process.env.PSM_API_KEY}`,
+       "X-Api-Key": `${process.env.PSM_API_KEY}`,
       },
       body: JSON.stringify(bookingData),
     });

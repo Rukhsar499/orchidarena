@@ -18,10 +18,34 @@ export default function CartPage() {
 
   useEffect(() => {
     const data = localStorage.getItem("psm_booking");
-    if (data) {
-      setBooking(JSON.parse(data));
-    }
+    if (data) setBooking(JSON.parse(data));
   }, []);
+
+  const handleFinalSubmit = async () => {
+    if (!booking) return;
+
+    try {
+      const response = await fetch("/api/submitbooking", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(booking),
+      });
+
+      const result = await response.json();
+      console.log("Final Submit API Result:", result);
+
+      if (result.status) {
+        alert("Booking submitted successfully!");
+        localStorage.removeItem("psm_booking");
+        window.location.href = "/"; // or thank-you page
+      } else {
+        alert(result.message || "Booking submission failed.");
+      }
+    } catch (error) {
+      console.error("Final Submit Error:", error);
+      alert("Error connecting to server.");
+    }
+  };
 
   if (!booking) {
     return <p className="text-center py-20 text-gray-500">No booking found.</p>;
@@ -36,7 +60,20 @@ export default function CartPage() {
         <div className="lg:col-span-2 border border-gray-300 rounded-lg p-6">
           <h3 className="text-2xl font-semibold mb-4">COURT BOOKING</h3>
           <p className="text-gray-700 mb-2">
-            <strong>Booking Date:</strong> {new Date(booking.date).toLocaleDateString("en-GB", {
+            <strong>FirstName:</strong> {booking.firstName}
+          </p>
+          <p className="text-gray-700 mb-2">
+            <strong>lastName:</strong> {booking.lastName}
+          </p>
+           <p className="text-gray-700 mb-2">
+            <strong>Email:</strong> {booking.email}
+          </p>
+           <p className="text-gray-700 mb-2">
+            <strong>Phone:</strong> {booking.phone}
+          </p>
+          <p className="text-gray-700 mb-2">
+            <strong>Booking Date:</strong>{" "}
+            {new Date(booking.date).toLocaleDateString("en-GB", {
               day: "numeric",
               month: "long",
               year: "numeric",
@@ -89,7 +126,7 @@ export default function CartPage() {
 
           <button
             className="w-full py-3 bg-green-600 text-white font-semibold rounded-md hover:bg-green-700 transition"
-            onClick={() => alert("Proceeding to Checkout...")}
+            onClick={handleFinalSubmit}
           >
             PROCEED TO CHECKOUT
           </button>

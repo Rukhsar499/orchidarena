@@ -39,18 +39,14 @@ export default function ContactForm() {
   const [slotsLoading, setSlotsLoading] = useState(false);
   const [total, setTotal] = useState(0);
 
-  // ✅ Handle input changes
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // ✅ Fetch locations on mount
+  // Fetch locations
   useEffect(() => {
     setLoading(true);
     fetch("/api/locations")
@@ -58,11 +54,11 @@ export default function ContactForm() {
       .then((data) => {
         if (data.status) setLocations(data.data);
       })
-      .catch((err) => console.error(err))
+      .catch(console.error)
       .finally(() => setLoading(false));
   }, []);
 
-  // ✅ Fetch slots when location or date changes
+  // Fetch slots
   useEffect(() => {
     if (!formData.location || !formData.date) {
       setSlots([]);
@@ -70,7 +66,6 @@ export default function ContactForm() {
     }
 
     setSlotsLoading(true);
-
     const selectedLoc = locations.find(
       (loc) => loc.subcategory_detail === formData.location
     );
@@ -82,30 +77,19 @@ export default function ContactForm() {
       return;
     }
 
-    // ✅ Convert date YYYY-MM-DD → DD-MM-YYYY
     const [year, month, day] = formData.date.split("-");
     const formattedDate = `${day}-${month}-${year}`;
-
-    console.log(
-      "Fetching slots URL:",
-      `/api/slots?subcatid=${subcatid}&date=${formattedDate}`
-    );
 
     fetch(`/api/slots?subcatid=${subcatid}&date=${formattedDate}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log("Slots API response:", data);
-        if (data.status && Array.isArray(data.data)) {
-          setSlots(data.data);
-        } else {
-          setSlots([]);
-        }
+        if (data.status && Array.isArray(data.data)) setSlots(data.data);
+        else setSlots([]);
       })
       .catch(() => setSlots([]))
       .finally(() => setSlotsLoading(false));
   }, [formData.location, formData.date, locations]);
 
-  // ✅ Handle slot selection
   const toggleSlot = (slot: Slot) => {
     let updatedSlots = [...formData.selectedSlots];
     if (updatedSlots.includes(slot.slot_name)) {
@@ -118,39 +102,19 @@ export default function ContactForm() {
     setFormData((prev) => ({ ...prev, selectedSlots: updatedSlots }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
 
-  const bookingData = {
-    ...formData,
-    total,
+    const bookingData = {
+      ...formData,
+      total,
+    };
+
+    // ✅ Store in localStorage and go to cart
+    localStorage.setItem("psm_booking", JSON.stringify(bookingData));
+    window.location.href = "/cart";
   };
 
-  try {
-    // ✅ Call your Next.js API route (NOT external URL directly)
-    const response = await fetch("/api/submitbooking", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(bookingData),
-    });
-
-    const result = await response.json();
-    console.log("Booking API result:", result);
-
-    if (result.status === true) {
-      localStorage.setItem("psm_booking", JSON.stringify(bookingData));
-      window.location.href = "/cart";
-    } else {
-      alert(result.message || "Booking failed. Please try again.");
-    }
-  } catch (error) {
-    console.error("Booking API Error:", error);
-    alert("Error connecting to booking server.");
-  }
-};
-
-
-  // ✅ UI (Design Same)
   return (
     <div className="container mx-auto px-4 flex justify-center mb-[80px]">
       <div className="w-full lg:w-2/3 bg-white p-6 shadow-md rounded-lg">
@@ -210,9 +174,7 @@ export default function ContactForm() {
             className="border-b border-gray-400 p-3 w-full mb-4 bg-transparent focus:border-black focus:outline-none"
             required
           >
-            <option value="">
-              {loading ? "Loading locations..." : "Select Location"}
-            </option>
+            <option value="">{loading ? "Loading locations..." : "Select Location"}</option>
             {locations.map((loc) => (
               <option key={loc.subcategory_id} value={loc.subcategory_detail}>
                 {loc.subcategory_detail}
@@ -238,36 +200,23 @@ export default function ContactForm() {
               <table className="w-full border-collapse border border-gray-300">
                 <thead>
                   <tr className="bg-[#91be4d] text-white">
-                    <th className="py-3 px-4 text-left text-[20px] font-light">
-                      Time Slot
-                    </th>
-                    <th className="py-3 px-4 text-center text-[20px] font-light">
-                      Rate
-                    </th>
-                    <th className="py-3 px-4 text-center text-[20px] font-light">
-                      Select
-                    </th>
+                    <th className="py-3 px-4 text-left text-[20px] font-light">Time Slot</th>
+                    <th className="py-3 px-4 text-center text-[20px] font-light">Rate</th>
+                    <th className="py-3 px-4 text-center text-[20px] font-light">Select</th>
                   </tr>
                 </thead>
                 <tbody>
                   {slots.map((slot, index) => (
                     <tr
                       key={index}
-                      className={`border-t ${formData.selectedSlots.includes(slot.slot_name)
-                          ? "bg-green-100"
-                          : "bg-white"
-                        }`}
+                      className={`border-t ${formData.selectedSlots.includes(slot.slot_name) ? "bg-green-100" : "bg-white"}`}
                     >
                       <td className="py-3 px-4">{slot.slot_name}</td>
-                      <td className="py-3 px-4 text-center">
-                        ₹{slot.slot_rate}
-                      </td>
+                      <td className="py-3 px-4 text-center">₹{slot.slot_rate}</td>
                       <td className="py-3 px-4 text-center">
                         <input
                           type="checkbox"
-                          checked={formData.selectedSlots.includes(
-                            slot.slot_name
-                          )}
+                          checked={formData.selectedSlots.includes(slot.slot_name)}
                           onChange={() => toggleSlot(slot)}
                           className="w-5 h-5 accent-[#91be4d]"
                         />
@@ -279,9 +228,7 @@ export default function ContactForm() {
 
               {/* Total & Proceed */}
               <div className="flex justify-between items-center mt-6">
-                <h3 className="text-lg font-semibold">
-                  Total: ₹{total.toFixed(2)}
-                </h3>
+                <h3 className="text-lg font-semibold">Total: ₹{total.toFixed(2)}</h3>
                 <button
                   type="submit"
                   disabled={formData.selectedSlots.length === 0}
