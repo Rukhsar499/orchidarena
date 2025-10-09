@@ -156,7 +156,7 @@ export default function ContactForm() {
                             width={20}
                             height={20}
                         />
-                        <span>Get In Touch</span>
+                        <span>Book Now</span>
                     </button>
                 </form>
             </div>

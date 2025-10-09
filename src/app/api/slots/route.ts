@@ -32,7 +32,7 @@ export async function GET(req: Request) {
 
 const data: {
       status: boolean;
-      data: { slot_rate_id: number; week_day_id:number; week_day:string; slot_id:number; slot_name:string; slot_rate:number }[];
+      data: { slot_rate_id: number; week_day_id:number; week_day:string; slot_id:number; slot_name:string; slot_rate:number; can_book:boolean }[];
     } = await res.json();
 
     // Map backend fields to frontend expected fields
@@ -43,6 +43,7 @@ const data: {
       slot_id: loc.slot_id,
       slot_name: loc.slot_name,
       slot_rate: loc.slot_rate,
+      can_book: loc.can_book,
     }));
 
 

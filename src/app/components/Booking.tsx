@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 
-
 interface FormData {
   firstName: string;
   lastName: string;
@@ -119,23 +118,37 @@ export default function ContactForm() {
     setFormData((prev) => ({ ...prev, selectedSlots: updatedSlots }));
   };
 
-  // ✅ Handle submit (localStorage + redirect)
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
 
-    const bookingData = {
-      ...formData,
-      total,
-    };
-
-    // 🧠 Save in localStorage
-    localStorage.setItem("psm_booking", JSON.stringify(bookingData));
-
-    console.log("Saved booking data:", bookingData);
-
-    // ✅ Redirect to cart page
-    window.location.href = "/cart";
+  const bookingData = {
+    ...formData,
+    total,
   };
+
+  try {
+    // ✅ Call your Next.js API route (NOT external URL directly)
+    const response = await fetch("/api/submitbooking", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(bookingData),
+    });
+
+    const result = await response.json();
+    console.log("Booking API result:", result);
+
+    if (result.status === true) {
+      localStorage.setItem("psm_booking", JSON.stringify(bookingData));
+      window.location.href = "/cart";
+    } else {
+      alert(result.message || "Booking failed. Please try again.");
+    }
+  } catch (error) {
+    console.error("Booking API Error:", error);
+    alert("Error connecting to booking server.");
+  }
+};
+
 
   // ✅ UI (Design Same)
   return (
@@ -240,11 +253,10 @@ export default function ContactForm() {
                   {slots.map((slot, index) => (
                     <tr
                       key={index}
-                      className={`border-t ${
-                        formData.selectedSlots.includes(slot.slot_name)
+                      className={`border-t ${formData.selectedSlots.includes(slot.slot_name)
                           ? "bg-green-100"
                           : "bg-white"
-                      }`}
+                        }`}
                     >
                       <td className="py-3 px-4">{slot.slot_name}</td>
                       <td className="py-3 px-4 text-center">
