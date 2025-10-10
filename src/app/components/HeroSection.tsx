@@ -8,7 +8,7 @@ export default function HeroSection() {
             {/* Background Video */}
             <video
                 className="px-6 py-4 absolute top-0 left-0 w-full h-full object-cover"
-                src="/assets/video/New-video.mp4"
+                src="/assets/video/psm-intro-video.mp4"
                 autoPlay
                 loop
                 muted

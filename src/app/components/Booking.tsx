@@ -3,13 +3,16 @@
 import { useState, useEffect } from "react";
 
 interface FormData {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  location: string;
-  date: string;
+  full_name: string;
+  email_id: string;
+  contact_no: string;
+  location_id: string;
+  booking_date: string;
+  bookedslotrate_ids: string[];
   selectedSlots: string[];
+  total_amount:number;
+  promo_code:string;
+  discount_amount:number;
 }
 
 interface Location {
@@ -18,19 +21,23 @@ interface Location {
 }
 
 interface Slot {
+  slot_rate_id: number;
   slot_name: string;
   slot_rate: number;
+  can_book: boolean;
 }
-
 export default function ContactForm() {
   const [formData, setFormData] = useState<FormData>({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    location: "",
-    date: "",
+    full_name: "",
+    email_id: "",
+    contact_no: "",
+    location_id: "",
+    booking_date: "",
+    bookedslotrate_ids: [],
     selectedSlots: [],
+    total_amount:0.00,
+    promo_code:"",
+    discount_amount:0.00
   });
 
   const [locations, setLocations] = useState<Location[]>([]);
@@ -60,15 +67,15 @@ export default function ContactForm() {
 
   // Fetch slots
   useEffect(() => {
-    if (!formData.location || !formData.date) {
+    if (!formData.location_id || !formData.booking_date) {
       setSlots([]);
       return;
     }
 
     setSlotsLoading(true);
     const selectedLoc = locations.find(
-      (loc) => loc.subcategory_detail === formData.location
-    );
+  (loc) => String(loc.subcategory_id) === formData.location_id
+);
     const subcatid = selectedLoc?.subcategory_id;
 
     if (!subcatid) {
@@ -77,7 +84,7 @@ export default function ContactForm() {
       return;
     }
 
-    const [year, month, day] = formData.date.split("-");
+    const [year, month, day] = formData.booking_date.split("-");
     const formattedDate = `${day}-${month}-${year}`;
 
     fetch(`/api/slots?subcatid=${subcatid}&date=${formattedDate}`)
@@ -88,32 +95,41 @@ export default function ContactForm() {
       })
       .catch(() => setSlots([]))
       .finally(() => setSlotsLoading(false));
-  }, [formData.location, formData.date, locations]);
+  }, [formData.location_id, formData.booking_date, locations]);
 
   const toggleSlot = (slot: Slot) => {
-    let updatedSlots = [...formData.selectedSlots];
-    if (updatedSlots.includes(slot.slot_name)) {
-      updatedSlots = updatedSlots.filter((s) => s !== slot.slot_name);
-      setTotal((prev) => prev - slot.slot_rate);
-    } else {
-      updatedSlots.push(slot.slot_name);
-      setTotal((prev) => prev + slot.slot_rate);
-    }
-    setFormData((prev) => ({ ...prev, selectedSlots: updatedSlots }));
-  };
+  let updatedSlots = [...formData.selectedSlots]; // array of Slot objects
+  if (updatedSlots.find(s => s.slot_rate_id === slot.slot_rate_id)) {
+    updatedSlots = updatedSlots.filter(s => s.slot_rate_id !== slot.slot_rate_id);
+    setTotal(prev => prev - slot.slot_rate);
+  } else {
+    updatedSlots.push(slot);
+    setTotal(prev => prev + slot.slot_rate);
+  }
+  setFormData(prev => ({ ...prev, selectedSlots: updatedSlots }));
+};
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const bookingData = {
-      ...formData,
-      total,
-    };
-
-    // ✅ Store in localStorage and go to cart
-    localStorage.setItem("psm_booking", JSON.stringify(bookingData));
-    window.location.href = "/cart";
+  const bookingData = {
+    full_name: formData.full_name || null,
+    contact_no: formData.contact_no || null,
+    email_id: formData.email_id || null,
+    location_id: formData.location_id ? Number(formData.location_id) : 0,
+    booking_date: formData.booking_date || null,
+    bookedslotrate_ids: formData.selectedSlots.length > 0 ? formData.selectedSlots : null,
+    selectedSlots: formData.selectedSlots.length > 0 ? formData.selectedSlots : null,
+    total_amount: total || 0.0,
+    promo_code: null,
+    discount_amount: 0.0,
   };
+
+  console.log('Booking JSON:', bookingData);
+
+  localStorage.setItem("psm_booking", JSON.stringify(bookingData));
+  window.location.href = "/cart";
+};
 
   return (
     <div className="container mx-auto px-4 flex justify-center mb-[80px]">
@@ -124,59 +140,53 @@ export default function ContactForm() {
           </h2>
 
           {/* Basic Info */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+          <div className="grid grid-cols-1 sm:grid-cols-1 gap-4 mb-4">
             <input
               type="text"
-              name="firstName"
-              placeholder="First Name"
-              value={formData.firstName}
+              name="full_name"
+              placeholder="Full Name"
+              value={formData.full_name}
               onChange={handleChange}
               className="border-b border-gray-400 p-3 w-full focus:border-black focus:outline-none"
               required
             />
-            <input
-              type="text"
-              name="lastName"
-              placeholder="Last Name"
-              value={formData.lastName}
-              onChange={handleChange}
-              className="border-b border-gray-400 p-3 w-full focus:border-black focus:outline-none"
-              required
-            />
+           
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
             <input
               type="email"
-              name="email"
+              name="email_id"
               placeholder="Email"
-              value={formData.email}
+              value={formData.email_id}
               onChange={handleChange}
               className="border-b border-gray-400 p-3 w-full focus:border-black focus:outline-none"
               required
             />
             <input
               type="tel"
-              name="phone"
+              name="contact_no"
               placeholder="Phone"
-              value={formData.phone}
+              value={formData.contact_no}
               onChange={handleChange}
               className="border-b border-gray-400 p-3 w-full focus:border-black focus:outline-none"
               required
+              pattern="[6-9][0-9]{9}" // starts with 6-9 and total 10 digits
+              title="Phone number must start with 6,7,8,9 and be 10 digits"
             />
           </div>
 
           {/* Location */}
           <select
-            name="location"
-            value={formData.location}
+            name="location_id"
+            value={formData.location_id}
             onChange={handleChange}
             className="border-b border-gray-400 p-3 w-full mb-4 bg-transparent focus:border-black focus:outline-none"
             required
           >
             <option value="">{loading ? "Loading locations..." : "Select Location"}</option>
             {locations.map((loc) => (
-              <option key={loc.subcategory_id} value={loc.subcategory_detail}>
+              <option key={loc.subcategory_id} value={loc.subcategory_id}>
                 {loc.subcategory_detail}
               </option>
             ))}
@@ -185,8 +195,8 @@ export default function ContactForm() {
           {/* Date */}
           <input
             type="date"
-            name="date"
-            value={formData.date}
+            name="booking_date"
+            value={formData.booking_date}
             onChange={handleChange}
             className="border-b border-gray-400 p-3 w-full mb-4 focus:border-black focus:outline-none"
             required
@@ -208,20 +218,24 @@ export default function ContactForm() {
                 <tbody>
                   {slots.map((slot, index) => (
                     <tr
-                      key={index}
-                      className={`border-t ${formData.selectedSlots.includes(slot.slot_name) ? "bg-green-100" : "bg-white"}`}
-                    >
-                      <td className="py-3 px-4">{slot.slot_name}</td>
-                      <td className="py-3 px-4 text-center">₹{slot.slot_rate}</td>
-                      <td className="py-3 px-4 text-center">
-                        <input
-                          type="checkbox"
-                          checked={formData.selectedSlots.includes(slot.slot_name)}
-                          onChange={() => toggleSlot(slot)}
-                          className="w-5 h-5 accent-[#91be4d]"
-                        />
-                      </td>
-                    </tr>
+                  key={index}
+                  className={`border-t ${
+                    formData.selectedSlots?.some(s => s.slot_rate_id === slot.slot_rate_id)
+                      ? "bg-green-100"
+                      : "bg-white"
+                  }`}
+                >
+                  <td className="py-3 px-4">{slot.slot_name}</td>
+                  <td className="py-3 px-4 text-center">₹{slot.slot_rate}</td>
+                  <td className="py-3 px-4 text-center">
+                    <input
+                      type="checkbox"
+                      checked={formData.selectedSlots?.some(s => s.slot_rate_id === slot.slot_rate_id) || false}
+                      onChange={() => toggleSlot(slot)}
+                      className="w-5 h-5 accent-[#91be4d]"
+                    />
+                  </td>
+                </tr>
                   ))}
                 </tbody>
               </table>
@@ -239,8 +253,8 @@ export default function ContactForm() {
               </div>
             </div>
           ) : (
-            formData.date &&
-            formData.location && (
+            formData.booking_date &&
+            formData.location_id && (
               <p className="text-center py-4 text-gray-600">
                 No slots available for the selected date and location.
               </p>

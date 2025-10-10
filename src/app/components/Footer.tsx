@@ -36,7 +36,7 @@ const socialLinks: SocialItem[] = [
 
 const contactInfo = [
     { icon: <MdPhone />, text: "+91 98315 57613" },
-    { icon: <MdEmail />, text: "calboat@gmail.com" },
+    { icon: <MdEmail />, text: "psmmanagementservicespvtltd@gmail.com" },
 
 ];
 

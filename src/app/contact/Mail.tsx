@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 const facilities = [
     {
         title: "Mail",
-        desc: "psm@gmail.com",
+        desc: "psmmanagementservicespvtltd@gmail.com",
         icon: (
             <Image
                 src="/assets/img/email.png"

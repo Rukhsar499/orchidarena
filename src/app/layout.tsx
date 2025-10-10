@@ -20,21 +20,15 @@ const dmSans = DM_Sans({
   weight: ["400", "500", "700"],
 });
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={`${barlowCondensed.className} ${dmSans.className}`}
-    >
+    <html lang="en" className={`${barlowCondensed.className} ${dmSans.className}`}>
       <body>
         <Header />
-        {children}
+        {/* Client-only children */}
+        <div id="root">{children}</div>
         <Footer />
-        </body>
+      </body>
     </html>
   );
 }
