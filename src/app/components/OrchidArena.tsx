@@ -24,7 +24,7 @@ const OrchidArena: React.FC = () => {
             {/* Right Content */}
             <div className="w-full md:w-1/2 flex flex-col gap-6">
                 <h2 className="text-3xl md:text-[55px] font-semibold">
-                    WELCOME TO PSM Turf
+                    WELCOME TO PSM TURF
                 </h2>
                 <p className="text-[18px] text-[#656565]">
                     Our cutting-edge football turf is in multiple locations across West Bengal. It is the perfect place for celebration, competition, and leisure. We have something for you if you&apos;re just here to play football. Enter our well-kept football field or experience the excitement of a game on our floodlit field, which is ideal for both day and night games. Our turf is perfect for holding leagues and tournaments of all kinds because it has excellent facilities and lots of room. We cater to serious athletes to recreational players of all ability levels. Our arena provides a lively, dynamic setting that unites people via lovely game of football. Go for it. The lights are on. Now let&apos;s get started.
