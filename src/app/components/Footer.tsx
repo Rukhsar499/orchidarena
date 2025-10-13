@@ -49,7 +49,7 @@ const Footer: React.FC = () => {
                     <div className="md:w-[30%] w-full">
                         <div className="flex flex-col">
                             <h2 className="text-[#fff] mb-6 text-[21px] font-semibold">PSM MANAGEMENT SERVICES PVT LTD.</h2>
-                            <p className="text-white/70 text-[17px]">
+                            <p className="text-white/70 md:text-lg text-[14px]">
                                 Our cutting-edge football turf is in multiple locations across West Bengal. It is the perfect place for celebration, competition, and leisure. We have something for you if you&apos;re just here to play football. Enter our well-kept football field or experience the excitement of a game on our floodlit field, which is ideal for both day and night games.
                             </p>
                         </div>
@@ -58,14 +58,14 @@ const Footer: React.FC = () => {
                     <div className="md:w-[32%] w-full">
                         <div className=" flex flex-col items-start justify-start text-left">
                             <h2 className="text-[#fff] mb-6 text-[21px] font-semibold">OFFICE</h2>
-                            <p className="text-white/70 text-[17px]">
+                            <p className="text-white/70 md:text-lg text-[14px]">
                                Plot No IIF/11, Unit No. ESNTB0202, Ecospace Business Park, Rajarhat, New Town, South Twenty Four Parganas, West Bengal, 700156
                             </p>
                             <div className="pt-8">
                                 <ul className="space-y-2 text-white/70 text-[16px] font-['DM_Sans'] ">
                                     {contactInfo.map((item, index) => (
                                         <li key={index} className="flex items-center gap-2 mb-8">
-                                            <a href={item.href} className="text-white/70 text-lg flex items-center justify-center gap-x-2">{item.icon}
+                                            <a href={item.href} className="text-white/70 md:text-lg text-[14px] flex items-center justify-center gap-x-2">{item.icon}
                                             {item.text}
                                             </a>
                                         </li>
@@ -111,7 +111,7 @@ const Footer: React.FC = () => {
                 </div>
 
                 <hr className="my-6 border-white/20" />
-                <p className="text-left text-white text-lg">
+                <p className="text-left text-white md:text-lg text-[14px]">
                     PSM MANAGEMENT SERVICES PVT LTD.©{new Date().getFullYear()} • All Rights Reserved
                 </p>
             </div>

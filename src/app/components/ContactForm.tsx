@@ -150,7 +150,7 @@ export default function ContactForm() {
 
             {/* Right Side Form */}
             <div className="w-full lg:w-1/2 flex items-center justify-start md:px-35 bg-white ">
-               <form onSubmit={handleSubmit} className="w-full">
+               <form onSubmit={handleSubmit} className="w-full p-5">
           <h2 className="text-3xl md:text-4xl font-semibold mb-6">
             PSM Turf – Let the games begin!
           </h2>
