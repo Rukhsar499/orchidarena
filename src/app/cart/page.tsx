@@ -1,6 +1,11 @@
 'use client';
 
 import { useEffect, useState } from "react";
+interface Slot {
+  slot_rate_id: number;
+  slot_name: string;
+  slot_rate: number;
+}
 
 interface BookingData {
   full_name: string;               
@@ -11,7 +16,8 @@ interface BookingData {
   bookedslotrate_ids: string;      
   total_amount: number;            
   promo_code: string;              
-  discount_amount: number;         
+  discount_amount: number; 
+  selectedSlots: Slot[];        
 }
 export default function CartPage() {
   const [booking, setBooking] = useState<BookingData | null>(null);
@@ -36,16 +42,16 @@ export default function CartPage() {
     if (!booking) return;
 
     // Map booking to API payload structure
-    const bookedSlotIds = booking.selectedSlots?.map((slot) => slot.slot_rate_id) ?? [];
-const bookedSlotIdsStr = bookedSlotIds.join(","); // "1,2,3"
+   const bookedSlotIds = booking.selectedSlots?.map((slot) => slot.slot_rate_id) ?? [];
+const bookedSlotIdsStr = bookedSlotIds.join(",");
 
-  const payload = {
+const payload = {
   full_name: booking.full_name,
   contact_no: booking.contact_no,
   email_id: booking.email_id,
   location_id: booking.location_id,
   booking_date: formatDateForAPI(booking.booking_date),
-  bookedslotrate_ids: booking.selectedSlots?.map(s => s.slot_rate_id).join(",") || "",
+  bookedslotrate_ids: bookedSlotIdsStr, // ✅ now it's used
   total_amount: booking.selectedSlots?.reduce((sum, s) => sum + s.slot_rate, 0) || 0,
   promo_code: booking.promo_code || "",
   discount_amount: booking.discount_amount || 0,
