@@ -222,7 +222,7 @@ export default function ContactForm() {
           {slotsLoading ? (
             <p className="text-center py-4">Loading available slots...</p>
           ) : slots.length > 0 ? (
-            <div className="overflow-y-auto mt-6 h-[300px]">
+            <div className="overflow-y-auto mt-6 h-[400px]">
               <table className="w-full border-collapse border border-gray-300">
                 <thead>
                   <tr className="bg-[#91be4d] text-white">
