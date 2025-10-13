@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 
 import GeneralInformation from "@/components/faq/GeneralInformation";
 // import BookingFees from "@/components/faq/BookingFees";
@@ -8,11 +9,35 @@ import GeneralInformation from "@/components/faq/GeneralInformation";
 const page = () => {
   return (
     <>
-     <section className="bg-black">
-            <div className="container mx-auto px-4 py-30">
-            <h4 className="text-center text-white text-3xl md:text-5xl">FAQ</h4>
-            </div>
-         </section>
+      <section className="banner relative w-full h-[400px] md:h-[300px] mb-5">
+             {/* Desktop Banner */}
+             <div className="hidden md:block relative w-full h-full">
+               <Image
+                 src="/assets/img/desktop-banner.png"
+                 alt="Event"
+                 fill
+                 className="object-cover w-full h-full"
+                 priority
+               />
+               <h1 className="text-[#fff] text-5xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
+                 FAQ
+               </h1>
+             </div>
+     
+             {/* Mobile Banner */}
+             <div className="block md:hidden relative w-full h-full">
+               <Image
+                 src="/assets/img/mob-banner.jpg"
+                 alt="Event"
+                 fill
+                 className="object-cover w-full h-full"
+                 priority
+               />
+               <h1 className="text-[#fff] text-3xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
+                 FAQ
+               </h1>
+             </div>
+           </section>
 
     
     <div className="">

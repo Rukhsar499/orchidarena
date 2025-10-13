@@ -14,12 +14,15 @@ export default function Home() {
         {/* Desktop Banner */}
         <div className="hidden md:block relative w-full h-full">
           <Image
-            src="/assets/img/desktop-banner.jpg"
+            src="/assets/img/desktop-banner.png"
             alt="Event"
             fill
             className="object-cover w-full h-full"
             priority
           />
+          <h1 className="text-[#fff] text-5xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
+            About Us
+          </h1>
         </div>
 
         {/* Mobile Banner */}
@@ -31,6 +34,9 @@ export default function Home() {
             className="object-cover w-full h-full"
             priority
           />
+          <h1 className="text-[#fff] text-3xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
+            About Us
+          </h1>
         </div>
       </section>
       <OrchidArena />
