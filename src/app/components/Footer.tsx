@@ -2,6 +2,7 @@
 
 import React from "react";
 
+
 import { FaFacebookF,  FaInstagram } from "react-icons/fa";
 import { MdPhone, MdEmail } from "react-icons/md";
 
@@ -54,7 +55,7 @@ const Footer: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className="md:w-[30%] w-full">
+                    <div className="md:w-[32%] w-full">
                         <div className=" flex flex-col items-start justify-start text-left">
                             <h2 className="text-[#fff] mb-6 text-[21px] font-semibold">OFFICE</h2>
                             <p className="text-white/70 text-[17px]">
@@ -64,8 +65,9 @@ const Footer: React.FC = () => {
                                 <ul className="space-y-2 text-white/70 text-[16px] font-['DM_Sans'] ">
                                     {contactInfo.map((item, index) => (
                                         <li key={index} className="flex items-center gap-2 mb-8">
-                                            <span className="text-[#fff] text-lg">{item.icon}</span>
+                                            <a href={item.href} className="text-white/70 text-lg flex items-center justify-center gap-x-2">{item.icon}
                                             {item.text}
+                                            </a>
                                         </li>
                                     ))}
                                 </ul>
@@ -73,7 +75,7 @@ const Footer: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className="md:w-[15%] w-full">
+                    <div className="md:w-[13%] w-full">
                         <div className="flex flex-col items-start justify-start text-left">
                             <h2 className="text-[#fff] mb-6 text-[21px] font-semibold">Links</h2>
                             <ul className="space-y-2 text-white/70 font-['DM_Sans'] text-[16px]">
