@@ -35,8 +35,8 @@ const socialLinks: SocialItem[] = [
 ];
 
 const contactInfo = [
-    { icon: <MdPhone />, text: "+91 98315 57613" },
-    { icon: <MdEmail />, text: "psmmanagementservicespvtltd@gmail.com" },
+    { icon: <MdPhone />, href: "tel:+919147766682", text: "+91 9147766682" },
+    { icon: <MdEmail />, href: "mailto:psmmanagementservicespvtltd@gmail.com", text: "psmmanagementservicespvtltd@gmail.com" },
 
 ];
 

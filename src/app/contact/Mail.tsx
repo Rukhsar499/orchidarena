@@ -5,22 +5,25 @@ import { motion } from "framer-motion";
 
 const facilities = [
     {
-        title: "Mail",
-        desc: "psmmanagementservicespvtltd@gmail.com",
-        icon: (
+    title: "Mail",
+    desc: "psmmanagementservicespvtltd@gmail.com",
+    icon: (
+        <a href="mailto:psmmanagementservicespvtltd@gmail.com">
             <Image
                 src="/assets/img/email.png"
-                alt="Cricket"
+                alt="Mail"
                 className="transition duration-300 group-hover:brightness-0"
                 width={60}
                 height={60}
             />
-        ),
-    },
+        </a>
+    ),
+},
     {
         title: "Phone",
-        desc: "1234567890",
+        desc: "+91 9147766682",
         icon: (
+             <a href="tel:+91 9147766682">
             <Image
                 src="/assets/img/telephone-call.png"
                 alt="Cricket"
@@ -28,6 +31,7 @@ const facilities = [
                 width={60}
                 height={60}
             />
+        </a>
         ),
     },
     {
