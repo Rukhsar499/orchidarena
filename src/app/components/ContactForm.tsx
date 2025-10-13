@@ -149,7 +149,7 @@ export default function ContactForm() {
             </div>
 
             {/* Right Side Form */}
-            <div className="w-full lg:w-1/2 flex items-center justify-start md:px-35 bg-white">
+            <div className="w-full lg:w-1/2 flex items-center justify-start md:px-35 bg-white ">
                <form onSubmit={handleSubmit} className="w-full">
           <h2 className="text-3xl md:text-4xl font-semibold mb-6">
             PSM Turf – Let the games begin!
@@ -222,7 +222,7 @@ export default function ContactForm() {
           {slotsLoading ? (
             <p className="text-center py-4">Loading available slots...</p>
           ) : slots.length > 0 ? (
-            <div className="overflow-x-auto mt-6">
+            <div className="overflow-y-auto mt-6 h-[500px] ">
               <table className="w-full border-collapse border border-gray-300">
                 <thead>
                   <tr className="bg-[#91be4d] text-white">
