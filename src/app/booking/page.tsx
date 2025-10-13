@@ -16,7 +16,7 @@ export default function booking() {
                         priority
                       />
                       <h1 className="text-[#fff] text-5xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
-                        Online Booking
+                        Booking
                       </h1>
                     </div>
             
@@ -30,7 +30,7 @@ export default function booking() {
                         priority
                       />
                       <h1 className="text-[#fff] text-3xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
-                         Online Booking
+                         Booking
                       </h1>
                     </div>
                   </section>
