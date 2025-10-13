@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function TurfGallery() {
   return (
-    <section className="py-10">
+    <section className="md:py-10 my-5">
       <div className="grid grid-cols-1 md:grid-cols-2">
         {/* Left Large Image */}
         <div className="relative group overflow-hidden rounded-lg">

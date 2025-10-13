@@ -6,9 +6,9 @@ import Link from "next/link";
 
 const OrchidArena: React.FC = () => {
     return (
-        <section className="max-w-7xl mx-auto px-4 md:px-8 my-24 flex flex-col md:flex-row items-center gap-12">
+        <section className="max-w-7xl mx-auto px-4 md:px-8 my-15 flex flex-col md:flex-row items-center gap-12">
             {/* Left Image */}
-            <div className="relative w-full md:w-1/2">
+            <div className="relative w-full md:w-1/2 md:mb-[0] mb-7">
                 <Image
                     src="/assets/img/5634265.jpg"
                     alt="A soccer arena"
