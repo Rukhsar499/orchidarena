@@ -1,14 +1,39 @@
 "use client";
+import Image from "next/image";
 
 export default function PrivacyPolicy() {
 
     return (
         <>
-         <section className="bg-black">
-            <div className="container mx-auto px-4 py-30">
-            <h4 className="text-center text-white text-3xl md:text-5xl">Booking Policy</h4>
-            </div>
-         </section>
+        <section className="banner relative w-full h-[400px] md:h-[300px] mb-5">
+                             {/* Desktop Banner */}
+                             <div className="hidden md:block relative w-full h-full">
+                               <Image
+                                 src="/assets/img/desktop-banner.png"
+                                 alt="Event"
+                                 fill
+                                 className="object-cover w-full h-full"
+                                 priority
+                               />
+                               <h1 className="text-[#fff] text-5xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
+                                 Booking Policy
+                               </h1>
+                             </div>
+                     
+                             {/* Mobile Banner */}
+                             <div className="block md:hidden relative w-full h-full">
+                               <Image
+                                 src="/assets/img/mob-banner.jpg"
+                                 alt="Event"
+                                 fill
+                                 className="object-cover w-full h-full"
+                                 priority
+                               />
+                               <h1 className="text-[#fff] text-3xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
+                                 Booking Policy
+                               </h1>
+                             </div>
+                           </section>
 
             <section className="max-w-6xl mx-auto px-6 py-16 text-gray-800">
                 <h1 className="text-3xl md:text-4xl font-bold mb-4 text-center">PSM Turf — Booking Policy</h1>

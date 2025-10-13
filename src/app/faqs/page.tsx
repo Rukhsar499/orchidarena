@@ -9,7 +9,7 @@ import GeneralInformation from "@/components/faq/GeneralInformation";
 const page = () => {
   return (
     <>
-      <section className="banner relative w-full h-[400px] md:h-[300px] mb-5">
+      <section className="banner relative w-full h-[400px] md:h-[300px]">
              {/* Desktop Banner */}
              <div className="hidden md:block relative w-full h-full">
                <Image
