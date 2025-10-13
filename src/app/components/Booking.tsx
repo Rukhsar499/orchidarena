@@ -9,7 +9,7 @@ interface FormData {
   location_id: string;
   booking_date: string;
   bookedslotrate_ids: string[];
-  selectedSlots: string[];
+  selectedSlots: Slot[];
   total_amount:number;
   promo_code:string;
   discount_amount:number;
@@ -113,20 +113,22 @@ export default function ContactForm() {
   e.preventDefault();
 
   const bookingData = {
-    full_name: formData.full_name || null,
-    contact_no: formData.contact_no || null,
-    email_id: formData.email_id || null,
+    full_name: formData.full_name?.trim() || null,
+    contact_no: formData.contact_no?.trim() || null,
+    email_id: formData.email_id?.trim() || null,
     location_id: formData.location_id ? Number(formData.location_id) : 0,
     booking_date: formData.booking_date || null,
-    bookedslotrate_ids: formData.selectedSlots.length > 0 ? formData.selectedSlots : null,
+    bookedslotrate_ids:
+      formData.selectedSlots.length > 0
+        ? formData.selectedSlots.map((s) => s.slot_rate_id)
+        : null,
     selectedSlots: formData.selectedSlots.length > 0 ? formData.selectedSlots : null,
     total_amount: total || 0.0,
     promo_code: null,
     discount_amount: 0.0,
   };
 
-  console.log('Booking JSON:', bookingData);
-
+  console.log("Booking JSON:", bookingData);
   localStorage.setItem("psm_booking", JSON.stringify(bookingData));
   window.location.href = "/cart";
 };
