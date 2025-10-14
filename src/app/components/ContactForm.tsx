@@ -138,7 +138,7 @@ export default function ContactForm() {
     return (
         <div className="w-full flex flex-col lg:flex-row min-h-[90vh]">
             {/* Left Side Image */}
-            <div className="w-full lg:w-1/2 h-64 lg:h-auto">
+            <div className="w-full lg:w-1/2 h-64 lg:h-auto order-2 lg:order-1">
                 <Image
                     src="/assets/img/bat.jpg"
                     alt="Event"
@@ -149,7 +149,7 @@ export default function ContactForm() {
             </div>
 
             {/* Right Side Form */}
-            <div className="w-full lg:w-1/2 flex items-center justify-start md:px-35 bg-white ">
+            <div className="w-full lg:w-1/2 flex items-center justify-start md:px-35 bg-white order-1 lg:order-2">
                <form onSubmit={handleSubmit} className="w-full p-5">
           <h2 className="text-3xl md:text-4xl font-semibold mb-6">
             PSM Turf – Let the games begin!

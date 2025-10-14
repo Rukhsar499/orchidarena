@@ -46,7 +46,7 @@ const Footer: React.FC = () => {
         <footer className="bg-[#272702] text-white md:py-20 py-4">
             <div className="max-w-7xl container mx-auto px-4">
                 <div className="flex flex-wrap gap-8 text-left">
-                    <div className="md:w-[30%] w-full">
+                    <div className="md:w-[35%] w-full">
                         <div className="flex flex-col">
                             <h2 className="text-[#fff] mb-6 text-[21px] font-semibold">PSM MANAGEMENT SERVICES PVT LTD.</h2>
                             <p className="text-white/70 md:text-lg text-[14px]">
@@ -55,7 +55,7 @@ const Footer: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className="md:w-[32%] w-full">
+                    <div className="md:w-[37%] w-full">
                         <div className=" flex flex-col items-start justify-start text-left">
                             <h2 className="text-[#fff] mb-6 text-[21px] font-semibold">OFFICE</h2>
                             <p className="text-white/70 md:text-lg text-[14px]">
@@ -78,7 +78,7 @@ const Footer: React.FC = () => {
                     <div className="md:w-[13%] w-full">
                         <div className="flex flex-col items-start justify-start text-left">
                             <h2 className="text-[#fff] mb-6 text-[21px] font-semibold">Links</h2>
-                            <ul className="space-y-2 text-white/70 font-['DM_Sans'] text-[16px]">
+                            <ul className="space-y-2 text-white/70 font-['DM_Sans'] md:text-lg text-[14px]">
                                 {legalLinks.map((link) => (
                                     <li key={link.name} className="flex items-center gap-2">
                                         <a href={link.href} className="hover:border-b-white hover:translate-x-1.5 hover:border-b-1 transform transition-all mb-3">
@@ -90,7 +90,7 @@ const Footer: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className="md:w-[10%] w-full">
+                    {/* <div className="md:w-[10%] w-full">
                         <div className="flex flex-col items-start justify-start text-left">
                             <h2 className="text-[#fff] mb-6 text-[21px] font-semibold">Get in Touch</h2>
                             <div className="gap-4 text-white flex">
@@ -106,12 +106,12 @@ const Footer: React.FC = () => {
                                 ))}
                             </div>
                         </div>
-                    </div>
+                    </div> */}
 
                 </div>
 
                 <hr className="my-6 border-white/20" />
-                <p className="text-left text-white md:text-lg text-[14px]">
+                <p className="text-left text-white/70 md:text-lg text-[14px]">
                     PSM MANAGEMENT SERVICES PVT LTD.©{new Date().getFullYear()} • All Rights Reserved
                 </p>
             </div>
