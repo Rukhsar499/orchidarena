@@ -4,11 +4,19 @@
 
 export default function HeroSection() {
     return (
-        <section className="bg-[#F3F8F9] relative w-full h-screen overflow-hidden">
+        <section className="bg-[#F3F8F9] relative w-full md:h-screen h-140 overflow-hidden">
             {/* Background Video */}
             <video
-                className="px-6 py-4 absolute top-0 left-0 w-full h-full object-cover"
+                className="px-6 py-4 absolute top-0 left-0 w-full h-full object-cover hidden md:block"
                 src="/assets/video/psm-intro-video.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+            />
+            <video
+                className="px-6 py-4 absolute top-0 left-0 w-full  block md:hidden"
+                src="/assets/video/psm-mobile-video.mp4"
                 autoPlay
                 loop
                 muted
@@ -38,5 +46,8 @@ export default function HeroSection() {
                 </motion.p>
             </div> */}
         </section>
+
+        
+        
     );
 }

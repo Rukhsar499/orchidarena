@@ -3,7 +3,7 @@
 import React from "react";
 
 
-import { FaFacebookF,  FaInstagram } from "react-icons/fa";
+// import { FaFacebookF,  FaInstagram } from "react-icons/fa";
 import { MdPhone, MdEmail } from "react-icons/md";
 
 type LinkItem = {
@@ -11,11 +11,11 @@ type LinkItem = {
     href: string;
 };
 
-type SocialItem = {
-    icon: React.ReactNode;
-    href: string;
-    label: string;
-};
+// type SocialItem = {
+//     icon: React.ReactNode;
+//     href: string;
+//     label: string;
+// };
 
 
 
@@ -29,11 +29,11 @@ const legalLinks: LinkItem[] = [
    
 ];
 
-const socialLinks: SocialItem[] = [
-    { icon: <FaFacebookF />, href: "#", label: "Facebook" },
-    { icon: <FaInstagram />, href: "#", label: "Instagram" },
+// const socialLinks: SocialItem[] = [
+//     { icon: <FaFacebookF />, href: "#", label: "Facebook" },
+//     { icon: <FaInstagram />, href: "#", label: "Instagram" },
 
-];
+// ];
 
 const contactInfo = [
     { icon: <MdPhone />, href: "tel:+919147766682", text: "+91 9147766682" },
