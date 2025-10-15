@@ -1,4 +1,5 @@
 'use client';
+import Image from "next/image";
 
 import { useEffect, useState } from "react";
 interface Slot {
@@ -88,6 +89,36 @@ const payload = {
   }
 
   return (
+    <>
+     <section className="banner relative w-full h-[400px] md:h-[300px]">
+                         {/* Desktop Banner */}
+                         <div className="hidden md:block relative w-full h-full">
+                           <Image
+                             src="/assets/img/desktop-banner.png"
+                             alt="Event"
+                             fill
+                             className="object-cover w-full h-full"
+                             priority
+                           />
+                           <h1 className="text-[#fff] text-5xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
+                             Cart
+                           </h1>
+                         </div>
+                 
+                         {/* Mobile Banner */}
+                         <div className="block md:hidden relative w-full h-full">
+                           <Image
+                             src="/assets/img/mob-banner.jpg"
+                             alt="Event"
+                             fill
+                             className="object-cover w-full h-full"
+                             priority
+                           />
+                           <h1 className="text-[#fff] text-3xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
+                              Cart
+                           </h1>
+                         </div>
+                       </section>
     <div className="container mx-auto p-6">
       <h2 className="text-3xl font-semibold mb-6">Cart Summary</h2>
 
@@ -139,14 +170,8 @@ const payload = {
                 <td className="py-2 font-medium">Total</td>
                 <td className="py-2 text-right">₹{booking.total_amount?.toFixed(2) ?? "0.00"}</td>
               </tr>
-              <tr>
-                <td className="py-2 font-medium">Actual Price</td>
-                <td className="py-2 text-right">₹{booking.total_amount?.toFixed(2) ?? "0.00"}</td>
-              </tr>
-              <tr>
-                <td className="py-2 font-medium">Pending Price</td>
-                <td className="py-2 text-right">₹0.00</td>
-              </tr>
+             
+             
             </tbody>
           </table>
 
@@ -159,5 +184,6 @@ const payload = {
         </div>
       </div>
     </div>
+    </>
   );
 }
