@@ -10,9 +10,9 @@ interface FormData {
   booking_date: string;
   bookedslotrate_ids: string[];
   selectedSlots: Slot[];
-  total_amount:number;
-  promo_code:string;
-  discount_amount:number;
+  total_amount: number;
+  promo_code: string;
+  discount_amount: number;
 }
 
 interface Location {
@@ -35,9 +35,9 @@ export default function ContactForm() {
     booking_date: "",
     bookedslotrate_ids: [],
     selectedSlots: [],
-    total_amount:0.00,
-    promo_code:"",
-    discount_amount:0.00
+    total_amount: 0.00,
+    promo_code: "",
+    discount_amount: 0.00
   });
 
   const [locations, setLocations] = useState<Location[]>([]);
@@ -74,8 +74,8 @@ export default function ContactForm() {
 
     setSlotsLoading(true);
     const selectedLoc = locations.find(
-  (loc) => String(loc.subcategory_id) === formData.location_id
-);
+      (loc) => String(loc.subcategory_id) === formData.location_id
+    );
     const subcatid = selectedLoc?.subcategory_id;
 
     if (!subcatid) {
@@ -98,40 +98,40 @@ export default function ContactForm() {
   }, [formData.location_id, formData.booking_date, locations]);
 
   const toggleSlot = (slot: Slot) => {
-  let updatedSlots = [...formData.selectedSlots]; // array of Slot objects
-  if (updatedSlots.find(s => s.slot_rate_id === slot.slot_rate_id)) {
-    updatedSlots = updatedSlots.filter(s => s.slot_rate_id !== slot.slot_rate_id);
-    setTotal(prev => prev - slot.slot_rate);
-  } else {
-    updatedSlots.push(slot);
-    setTotal(prev => prev + slot.slot_rate);
-  }
-  setFormData(prev => ({ ...prev, selectedSlots: updatedSlots }));
-};
-
-  const handleSubmit = (e: React.FormEvent) => {
-  e.preventDefault();
-
-  const bookingData = {
-    full_name: formData.full_name?.trim() || null,
-    contact_no: formData.contact_no?.trim() || null,
-    email_id: formData.email_id?.trim() || null,
-    location_id: formData.location_id ? Number(formData.location_id) : 0,
-    booking_date: formData.booking_date || null,
-    bookedslotrate_ids:
-      formData.selectedSlots.length > 0
-        ? formData.selectedSlots.map((s) => s.slot_rate_id)
-        : null,
-    selectedSlots: formData.selectedSlots.length > 0 ? formData.selectedSlots : null,
-    total_amount: total || 0.0,
-    promo_code: null,
-    discount_amount: 0.0,
+    let updatedSlots = [...formData.selectedSlots]; // array of Slot objects
+    if (updatedSlots.find(s => s.slot_rate_id === slot.slot_rate_id)) {
+      updatedSlots = updatedSlots.filter(s => s.slot_rate_id !== slot.slot_rate_id);
+      setTotal(prev => prev - slot.slot_rate);
+    } else {
+      updatedSlots.push(slot);
+      setTotal(prev => prev + slot.slot_rate);
+    }
+    setFormData(prev => ({ ...prev, selectedSlots: updatedSlots }));
   };
 
-  console.log("Booking JSON:", bookingData);
-  localStorage.setItem("psm_booking", JSON.stringify(bookingData));
-  window.location.href = "/cart";
-};
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const bookingData = {
+      full_name: formData.full_name?.trim() || null,
+      contact_no: formData.contact_no?.trim() || null,
+      email_id: formData.email_id?.trim() || null,
+      location_id: formData.location_id ? Number(formData.location_id) : 0,
+      booking_date: formData.booking_date || null,
+      bookedslotrate_ids:
+        formData.selectedSlots.length > 0
+          ? formData.selectedSlots.map((s) => s.slot_rate_id)
+          : null,
+      selectedSlots: formData.selectedSlots.length > 0 ? formData.selectedSlots : null,
+      total_amount: total || 0.0,
+      promo_code: null,
+      discount_amount: 0.0,
+    };
+
+    console.log("Booking JSON:", bookingData);
+    localStorage.setItem("psm_booking", JSON.stringify(bookingData));
+    window.location.href = "/cart";
+  };
 
   return (
     <div className="container mx-auto px-4 flex justify-center mb-[80px]">
@@ -152,7 +152,7 @@ export default function ContactForm() {
               className="border-b border-gray-400 p-3 w-full focus:border-black focus:outline-none"
               required
             />
-           
+
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
@@ -200,8 +200,10 @@ export default function ContactForm() {
             name="booking_date"
             value={formData.booking_date}
             onChange={handleChange}
-            className="border-b border-gray-400 p-3 w-full mb-4 focus:border-black focus:outline-none"
+            className="border-b border-gray-400 p-3 w-full mb-4 focus:border-black focus:outline-none cursor-pointer"
             required
+            min={new Date().toISOString().split("T")[0]} // blocks past dates
+            onClick={(e) => (e.target as HTMLInputElement).showPicker?.()} // makes full field open calendar
           />
 
           {/* Slots Table */}
@@ -220,24 +222,23 @@ export default function ContactForm() {
                 <tbody>
                   {slots.map((slot, index) => (
                     <tr
-                  key={index}
-                  className={`border-t ${
-                    formData.selectedSlots?.some(s => s.slot_rate_id === slot.slot_rate_id)
-                      ? "bg-green-100"
-                      : "bg-white"
-                  }`}
-                >
-                  <td className="py-3 px-4">{slot.slot_name}</td>
-                  <td className="py-3 px-4 text-center">₹{slot.slot_rate}</td>
-                  <td className="py-3 px-4 text-center">
-                    <input
-                      type="checkbox"
-                      checked={formData.selectedSlots?.some(s => s.slot_rate_id === slot.slot_rate_id) || false}
-                      onChange={() => toggleSlot(slot)}
-                      className="w-5 h-5 accent-[#91be4d]"
-                    />
-                  </td>
-                </tr>
+                      key={index}
+                      className={`border-t ${formData.selectedSlots?.some(s => s.slot_rate_id === slot.slot_rate_id)
+                          ? "bg-green-100"
+                          : "bg-white"
+                        }`}
+                    >
+                      <td className="py-3 px-4">{slot.slot_name}</td>
+                      <td className="py-3 px-4 text-center">₹{slot.slot_rate}</td>
+                      <td className="py-3 px-4 text-center">
+                        <input
+                          type="checkbox"
+                          checked={formData.selectedSlots?.some(s => s.slot_rate_id === slot.slot_rate_id) || false}
+                          onChange={() => toggleSlot(slot)}
+                          className="w-5 h-5 accent-[#91be4d]"
+                        />
+                      </td>
+                    </tr>
                   ))}
                 </tbody>
               </table>
