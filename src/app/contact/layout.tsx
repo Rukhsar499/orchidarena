@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
- title: "contact",
-  description: "Sports Narayana Website",
+ title: "Contact PSM Turf – Connect With Us",
+  description: "Reach out to PSM Turf for bookings, support, or general inquiries. We’re here to assist football enthusiasts across West Bengal at every step.",
 };
 
 
