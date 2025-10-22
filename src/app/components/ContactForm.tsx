@@ -209,13 +209,15 @@ export default function ContactForm() {
           </select>
 
           {/* Date */}
-          <input
+         <input
             type="date"
             name="booking_date"
             value={formData.booking_date}
             onChange={handleChange}
-            className="border-b border-gray-400 p-3 w-full mb-4 focus:border-black focus:outline-none"
+            className="border-b border-gray-400 p-3 w-full mb-4 focus:border-black focus:outline-none cursor-pointer"
             required
+            min={new Date().toISOString().split("T")[0]} // blocks past dates
+            onClick={(e) => (e.target as HTMLInputElement).showPicker?.()} // makes full field open calendar
           />
 
           {/* Slots Table */}
