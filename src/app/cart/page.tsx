@@ -72,9 +72,9 @@ const payload = {
       console.log("External API Response:\n", JSON.stringify(result, null, 2));
 
       if (result.status) {
-        alert("Booking submitted successfully!");
+        // alert("Booking submitted successfully!");
         localStorage.removeItem("psm_booking");
-        window.location.href = "/"; // or redirect to a thank-you page
+        window.location.href = "/thank-you"; // or redirect to a thank-you page
       } else {
         alert(result.message || "Booking submission failed.");
       }

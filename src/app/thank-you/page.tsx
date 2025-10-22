@@ -64,15 +64,7 @@ export default function ThankYouPage() {
       </motion.div>
 
       {/* Decorative Turf Field Pattern */}
-      <div className="absolute bottom-0 left-0 right-0 overflow-hidden">
-        <Image
-          src="/assets/img/turf-lines.png"
-          alt="Turf Lines"
-          width={1920}
-          height={300}
-          className="opacity-10 object-cover w-full"
-        />
-      </div>
+      
 
       {/* Footer */}
       <motion.p
