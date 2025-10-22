@@ -56,7 +56,7 @@ export default function ThankYouPage() {
           Back to Home
         </Link>
         <Link
-          href="/book-slot"
+          href="/booking"
           className="border-2 border-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-green-800 transition-all"
         >
           Book Another Slot
