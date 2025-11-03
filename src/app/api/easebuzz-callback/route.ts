@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 
+
 export async function POST(req: Request) {
   try {
     const data = await req.formData();
@@ -29,7 +30,7 @@ export async function POST(req: Request) {
 
     console.log("🌐 Using base URL:", baseUrl);
     console.log("📦 Payment Status:", paymentstatus);
-
+  //  window.location.href="http://localhost:3000/payment-failed"
     // ✅ Build redirect URL
     let redirectUrl = "";
     if (paymentstatus.toLowerCase() === "success") {
@@ -41,15 +42,19 @@ export async function POST(req: Request) {
     console.log("➡️ Redirecting to:", redirectUrl);
 
     // ✅ Validate before redirect
-    try {
-      new URL(redirectUrl);
-    } catch (err) {
-      console.error("❌ Invalid redirect URL generated:", redirectUrl);
-      return NextResponse.json({ error: "Invalid redirect URL", redirectUrl, baseUrl });
-    }
+    // try {
+    //   new URL(redirectUrl);
+    // } catch (err) {
+    //   console.error("❌ Invalid redirect URL generated:", redirectUrl);
+    //   return NextResponse.json({ error: "Invalid redirect URL", redirectUrl, baseUrl });
+    // }
 
-    // ✅ Perform redirect
-    return NextResponse.redirect(redirectUrl);
+    // Redirect to frontend page
+    // return NextResponse.redirect(redirectUrl);
+    return new Response(null, {
+      status: 302,
+      headers: { Location: redirectUrl },
+    });
   } catch (err) {
     console.error("🔥 Error in Easebuzz Callback:", err);
     return NextResponse.json({ error: "callback error" });
