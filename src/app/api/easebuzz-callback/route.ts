@@ -18,7 +18,7 @@ export async function POST(req: Request) {
     });
 
     const backendResponse = await res.json();
-    console.log("📤 Backend confirm_payment_ezb Response:", backendResponse);
+    // console.log("📤 Backend confirm_payment_ezb Response:", backendResponse);
 
     // ✅ Determine payment status
     const txnid = entries.txnid || backendResponse?.data?.txnid || "";
@@ -26,10 +26,10 @@ export async function POST(req: Request) {
       entries.payment_status || backendResponse?.data?.payment_status || "failed";
 
     // ✅ Base URL safety (detect if env missing)
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL?.trim() || "http://localhost:3000";
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL?.trim() || "https://psmtruf.vercel.app";
 
-    console.log("🌐 Using base URL:", baseUrl);
-    console.log("📦 Payment Status:", paymentstatus);
+    // console.log("🌐 Using base URL:", baseUrl);
+    // console.log("📦 Payment Status:", paymentstatus);
   //  window.location.href="http://localhost:3000/payment-failed"
     // ✅ Build redirect URL
     let redirectUrl = "";
