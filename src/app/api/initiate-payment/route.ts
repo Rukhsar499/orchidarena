@@ -36,7 +36,7 @@ export async function POST(req: Request) {
     console.log("🔙 Easebuzz API Raw Response:", result);
 
     if (result?.data?.access_key?.data) {
-      console.log("✅ Access key received:", result.data.access_key.data);
+      // console.log("✅ Access key received:", result.data.access_key.data);
       return NextResponse.json({
         success: true,
         redirect: `https://pay.easebuzz.in/pay/${result.data.access_key.data}`,

@@ -26,7 +26,7 @@ export async function POST(req: Request) {
       entries.payment_status || backendResponse?.data?.payment_status || "failed";
 
     // ✅ Base URL safety (detect if env missing)
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL?.trim() || "https://psmtruf.vercel.app";
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL?.trim() || "https://psmservices.org/";
 
     // console.log("🌐 Using base URL:", baseUrl);
     // console.log("📦 Payment Status:", paymentstatus);
