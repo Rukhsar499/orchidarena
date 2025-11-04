@@ -33,7 +33,7 @@ export async function POST(req: Request) {
     console.log("🧾 Final Detected Payment Status:", paymentstatus);
 
     // ✅ Base URL safety (detect if env missing)
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL?.trim() || "http://localhost:3001/";
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL?.trim() || "https://psmservices.org/";
 
     // console.log("🌐 Using base URL:", baseUrl);
     // console.log("📦 Payment Status:", paymentstatus);
