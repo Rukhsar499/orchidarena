@@ -39,7 +39,7 @@ export default function PaymentFailedPage() {
             href="/contact"
             className="bg-red-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-red-700 transition-all"
           >
-            Contact Support
+            Contact 
           </Link>
         </div>
       </div>
