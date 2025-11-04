@@ -14,19 +14,16 @@ export default function PaymentSuccessPage() {
         <h2 className="text-3xl font-bold text-gray-800 mb-3">
           Payment Successful 🎉
         </h2>
+        <p className="text-gray-600 mb-2">
+          Thank you for completing your booking in Psm Turf.  
+          
+        </p>
         <p className="text-gray-600 mb-6">
-          Thank you for completing your job application payment.  
-          Our recruitment team will review your submission and contact you soon.
+          
+          <b>Enjoy Your Match.</b>
         </p>
 
-        <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6 text-left">
-          <h4 className="text-green-700 font-semibold mb-2">Next Steps:</h4>
-          <ul className="list-disc list-inside text-sm text-gray-700">
-            <li>Your application has been received successfully.</li>
-            <li>You’ll receive an email confirmation shortly.</li>
-            <li>Keep an eye on your inbox for interview updates.</li>
-          </ul>
-        </div>
+       
 
         <Link
           href="/booking"

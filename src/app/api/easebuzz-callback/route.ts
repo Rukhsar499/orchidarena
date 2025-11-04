@@ -22,15 +22,22 @@ export async function POST(req: Request) {
 
     // ✅ Determine payment status
     const txnid = entries.txnid || backendResponse?.data?.txnid || "";
+    // 🧠 Normalize all possible fields from Easebuzz
     const paymentstatus =
-      entries.payment_status || backendResponse?.data?.payment_status || "failed";
+      (entries.payment_status ||
+        entries.status ||
+        backendResponse?.data?.payment_status ||
+        backendResponse?.data?.status ||
+        "").toString().trim().toLowerCase();
+
+    console.log("🧾 Final Detected Payment Status:", paymentstatus);
 
     // ✅ Base URL safety (detect if env missing)
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL?.trim() || "https://psmservices.org/";
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL?.trim() || "http://localhost:3001/";
 
     // console.log("🌐 Using base URL:", baseUrl);
     // console.log("📦 Payment Status:", paymentstatus);
-  //  window.location.href="http://localhost:3000/payment-failed"
+    //  window.location.href="http://localhost:3000/payment-failed"
     // ✅ Build redirect URL
     let redirectUrl = "";
     if (paymentstatus.toLowerCase() === "success") {
